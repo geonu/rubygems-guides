@@ -1,19 +1,17 @@
 ---
 layout: default
-title: Guides
+title: 가이드
 previous: /credits
 next: /rubygems-basics
 ---
 
-<em class="t-gray">Learn how RubyGems works, and how to make your own.</em>
+<em class="t-gray">RubyGems가 어떻게 동작하는지와 어떻게 직접 만드는지 배웁시다.</em>
 
-The RubyGems software allows you to easily 
-download, install, and use ruby software packages on your system.  The
-software package is called a "gem" and contains a package Ruby
-application or library.
+RubyGems 소프트웨어는 시스템에서 루비 소프트웨어 패키지를 쉽게 다운로드,
+인스톨, 관리하도록 합니다. 소프트웨어 패키지는 "젬"이라 불리고 루비
+애플리케이션이나 라이브러리를 담고있는 패키지입니다.
 
-Gems can be used to extend or modify
-functionality in Ruby applications.  Commonly they're used to distribute
-reusable functionality that is shared with other Rubyists for use in
-their applications and libraries.  Some gems provide command line
-utilities to help automate tasks and speed up your work.
+젬은 루비 애플리케이션의 기능을 추가하거나 수정하는데 사용할 수 있습니다.
+일반적으로 젬은 어플리케이션이나 라이브러리에서 쓸 수 있는 재사용 가능한
+기능을 다른 루비스트와 공유하려고 사용합니다. 어떤 젬은 테스크를 자동화해
+업무효율을 높일 수 있도록 커맨드 라인 유틸리티를 제공하기도 합니다.
