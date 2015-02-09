@@ -1,37 +1,38 @@
 ---
 layout: default
-title: RubyGems Basics
+title: RubyGems 베이직
 url: /rubygems-basics
 previous: /
 next: /what-is-a-gem
 ---
 
-<em class="t-gray">Use of common RubyGems commands</em>
+<em class="t-gray">일반적인 RubyGems 명령어 사용하기</em>
 
-The `gem` command allows you to interact with RubyGems.
+`gem` 명령어로 RubyGems와 상호작용할 수 있습니다.
 
-Ruby 1.9 and newer ships with RubyGems built-in but you may need to upgrade for
-bug fixes or new features.  To upgrade RubyGems or install it for the first
-time (if you need to use Ruby 1.9) visit the
-[download](https://rubygems.org/pages/download) page.
+루비 1.9 이상의 버전에서는 RubyGems가 동봉되어 있습니다만, 아마도 버그 수정이나
+새로운 기능을 위해 업그레이드 하실 필요가 있을 겁니다. RubyGems를 처음으로
+업그레이드하거나 인스톨하신다면 (그리고 루비 1.9를 사용해야한다면)
+[다운로드](https://rubygems.org/pages/download) 페이지에 가보세요.
 
-If you want to see how to require files from a gem, skip ahead to [What is a
-gem]({{ site.baseurl }}/what-is-a-gem)
+gem에서 어떻게 파일을 요청하는지 알고 싶으시면, [gem이란
+무엇인가?]({{ site.baseurl }}/what-is-a-gem)를 먼저 보세요.
 
-* [Finding Gems](#finding-gems)
-* [Installing Gems](#installing-gems)
-* [Requiring Code](#requiring-code)
-* [Listing Installed Gems](#listing-installed-gems)
-* [Uninstalling Gems](#uninstalling-gems)
-* [Viewing Documentation](#viewing-documentation)
-* [Fetching and Unpacking Gems](#fetching-and-unpacking-gems)
-* [Further Reading](#further-reading)
+* [gem 찾기](#finding-gems)
+* [gem 인스톨하기](#installing-gems)
+* [코드 require하기](#requiring-code)
+* [인스톨된 gem 목록보기](#listing-installed-gems)
+* [gem 언인스톨하기](#uninstalling-gems)
+* [문서 보기](#viewing-documentation)
+* [gem 가져오고 언팩하기](#fetching-and-unpacking-gems)
+* [더 읽을거리](#further-reading)
 
-Finding Gems
-------------
+gem 찾기
+----------------
+{:#finding-gems}
 
-The `search` command lets you find remote gems by name.  You can use regular
-expression characters in your query:
+`search` 명령어를 사용하면, 리모트 gem을 이름으로 검색할 수 있습니다. 쿼리에서
+정규표현식을 사용할 수도 있습니다.
 
     $ gem search ^rails
 
@@ -44,9 +45,9 @@ expression characters in your query:
     rails-ajax (0.2.0.20130731)
     [...]
 
-If you see a gem you want more information on you can add the details option.
-You'll want to do this with a small number of gems, though, as listing gems
-with details requires downloading more files:
+gem에 대한 더 자세한 정보를 원하신다면 details 옵션을 넣으시면 됩니다.
+details가 포함된 gem 리스트는 파일을 더 많이 다운로드해야 하므로, 적은 수의 gem만
+검색하시는 것이 좋습니다.
 
     $ gem search ^rails$ -d
 
@@ -58,14 +59,15 @@ with details requires downloading more files:
 
         Full-stack web application framework.
 
-You can also search for gems on rubygems.org such as [this search for
-rake](https://rubygems.org/search?utf8=✓&query=rake)
+rubygems.org에서도 gem을 검색하실 수 있습니다. 이 [링크는
+rake](https://rubygems.org/search?utf8=✓&query=rake)를 검색합니다.
 
-Installing Gems
----------------
+gem 인스톨하기
+-------------------
+{:#installing-gems}
 
-The `install` command downloads and installs the gem and any necessary
-dependencies then builds documentation for the installed gems.
+`install` 명령어는 gem과 필요한 의존성을 다운로드 인스톨하고, 인스톨된 gem의
+문서를 빌드합니다.
 
     $ gem install drip
     Fetching: rbtree-0.4.1.gem (100%)
@@ -80,23 +82,22 @@ dependencies then builds documentation for the installed gems.
     Done installing documentation for rbtree, drip after 0 seconds
     2 gems installed
 
-Here the drip command depends upon the rbtree gem which has an extension.  Ruby
-installs the dependency rbtree and builds its extension, installs the drip gem,
-then builds documentation for the installed gems.
+이 drip 명령어는 확장을 가지고 있는 rbtree gem에 의존합니다. 루비는 의존관계의
+rbtree를 인스톨하고 그 확장을 빌드하고 drip gem을 인스톨하고 설치된 gem들의 문서를
+빌드합니다.
 
-You can disable documentation generation using the `--no-doc` argument when
-installing gems.
+gem을 인스톨할 때 `--no-doc`인자를 이용해 문서 생성을 하지 않을 수 있습니다.
 
-Requiring code
---------------
+코드 require하기
+------------------
+{:#requiring-code}
 
-RubyGems modifies your Ruby load path, which controls how your Ruby code is
-found by the `require` statement. When you `require` a gem, really you're just
-placing that gem's `lib` directory onto your `$LOAD_PATH`. Let's try this out
-in `irb` and get some help from the `pretty_print` library included with Ruby.
+RubyGems는 `require`문에서 루비 코드를 찾는 루비 로드 패스를 수정합니다. gem을
+`require`할 때, 사실은 그냥 `$LOAD_PATH`에 gem의 `lib` 디랙토리를 붙일 뿐입니다.
+루비에서 `pretty_print` 라이브러리가 어떻게 인클루드되는지 이해하기 위해
+`irb`에서 한번 시험해 봅시다.
 
-*Tip: Passing `-r` to
-`irb` will automatically require a library when irb is loaded.*
+*팁: `irb`에 `-r`을 넘기면 irb가 로드될 때 자동으로 라이브러리를 require합니다.*
 
     % irb -rpp
     >> pp $LOAD_PATH
@@ -107,9 +108,9 @@ in `irb` and get some help from the `pretty_print` library included with Ruby.
      ".../lib/ruby/1.9.1",
      "."]
 
-By default you have just a few system directories on the load path and the Ruby
-standard libraries.  To add the awesome_print directories to the load path,
-you can require one of its files:
+기본적으로는 로드 패스는 조금의 시스템 디랙토리와 루비 스텐다드 라이브러리만
+가지고 있습니다. 로드 패스에 awesome_print의 디랙토리를 추가하면, 
+awesome_print의 파일 중 하나를 require할 수 있게됩니다.
 
     % irb -rpp
     >> require 'ap'
@@ -117,20 +118,20 @@ you can require one of its files:
     >> pp $LOAD_PATH.first
     ".../gems/awesome_print-1.0.2/lib"
 
-Note:  For Ruby 1.8 you must `require 'rubygems'` before requiring any gems.
+주의: 루비 1.8에서는 gem을 require하기 전에 `require 'rubygems'`을 해야합니다.
 
-Once you've required `ap`, RubyGems automatically places its
-`lib` directory on the `$LOAD_PATH`.
+한번 `ap`를 require 하면, RubyGems는 자동으로 `$LOAD_PATH`에 `lib`디랙토리를
+붙입니다.
 
-That's basically it for what's in a gem.  Drop Ruby code into `lib`, name a
-Ruby file the same as your gem (for the gem "freewill" the file should be
-`freewill.rb`, see also [name your gem]({{ site.baseurl }}/name-your-gem)) and it's loadable by
-RubyGems.
+이것이 gem안에 있는 것은 기본적으로 이것 뿐입니다. 루비 코드를 `lib`에 넣고
+루비 파일의 이름을 gem의 이름과 같게 지으면, ("freewill" gem이라면 파일은
+`freewill.rb`이 되어야 합니다, [gem 이름짓기]({{ site.baseurl }}/name-your-gem)
+도 보세요.) RubyGems에서 로드됩니다.
 
-The `lib` directory itself normally contains only one `.rb` file and a
-directory with the same name as the gem which contains the rest of the files.
+`lib` 디랙토리 자체는 보통 하나의 `.rb` 파일과 다른 모든 파일을 가지고 있는
+같은 이름의 디랙토리를 가지고 있습니다.
 
-For example:
+예를 들어:
 
     % tree freewill/
     freewill/
@@ -141,10 +142,11 @@ For example:
         │   └── ...
         └── freewill.rb
 
-Listing Installed Gems
-----------------------
+인스톨된 gem 목록보기
+--------------------------
+{:#listing-installed-gems}
 
-The `list` command shows your locally installed gems:
+`list` 명령어는 로컬에 인스톨된 gem을 보여줍니다.
 
     $ gem list
 
@@ -161,18 +163,19 @@ The `list` command shows your locally installed gems:
     rdoc (4.0.0)
     test-unit (2.0.0.0)
 
-(Ruby ships with some gems by default, bigdecimal, io-console, json, minitest,
-psych, rake, rdoc, test-unit for ruby 2.0.0).
+(루비에는 몇가지 gem들이 기본으로 포함되어 있습니다. 루비 2.0.0에는 bigdecimal,
+io-console, json, minitest, psych, rake, rdoc, test-unit가 들어있습니다.)
 
-Uninstalling Gems
------------------
+gem 언인스톨하기
+---------------------
+{:#uninstalling-gems}
 
-The `uninstall` command removes the gems you have installed.
+`uninstall` 명령어는 인스톨한 gem을 제거합니다.
 
     $ gem uninstall drip
     Successfully uninstalled drip-0.0.2
 
-If you uninstall a dependency of a gem RubyGems will ask you for confirmation.
+의존성이 있는 gem을 언인스톨 하려면, RubyGems에서 정말로 지울 건지 확인합니다.
 
     $ gem uninstall rbtree
 
@@ -185,10 +188,11 @@ If you uninstall a dependency of a gem RubyGems will ask you for confirmation.
     ERROR:  While executing gem ... (Gem::DependencyRemovalException)
         Uninstallation aborted due to dependent gem(s)
 
-Viewing Documentation
----------------------
+문서 보기
+-------------------------
+{:#viewing-documentation}
 
-You can view the documentation for your installed gems with `ri`:
+설치된 gem의 문서를 `ri`를 이용해 볼 수 있습니다.
 
     $ ri RBTree
     RBTree < MultiRBTree
@@ -200,21 +204,20 @@ You can view the documentation for your installed gems with `ri`:
     subclass of MultiRBTree.
     -------------------------------------------
 
-You can view the documentation for your installed gems in your browser with
-the `server` command:
+설치된 gem의 문서를 브라우저에서 보려면 `server` 명령어로 볼 수 있습니다.
 
     $ gem server
     Server started at http://0.0.0.0:8808
     Server started at http://[::]:8808
 
-You can access this documentation at http://localhost:8808
+문서는 http://localhost:8808 에서  보실 수 있습니다.
 
-Fetching and Unpacking Gems
----------------------------
+gem 가져오고 언팩하기
+-------------------------------
+{:#fetching-and-unpacking-gems}
 
-If you wish to audit a gem's contents without installing it you can use the
-`fetch` command to download the .gem file then extract its contents with the
-`unpack` command.
+gem의 내용을 인스톨없이 보고싶은 경우, `fetch` 명령어를 사용해 .gem 파일을
+다운로드해 `unpack` 명령어로 내용을 추출할 수 있습니다.
 
     $ gem fetch malice
     Fetching: malice-13.gem (100%)
@@ -233,8 +236,8 @@ If you wish to audit a gem's contents without installing it you can use the
     [...]
     $ rm -r malice-13*
 
-You can also unpack a gem you have installed, modify a few files, then use the
-modified gem in place of the installed one:
+설치된 gem도 unpack해서, 파일을 조금 수정해, 설치된 것 대신에 수정된 gem을 사용할
+수도 있습니다.
 
     $ gem unpack rake
     Unpacked gem: '.../rake-10.1.0'
@@ -242,15 +245,16 @@ modified gem in place of the installed one:
     $ ruby -I rake-10.1.0/lib -S rake some_rake_task
     [...]
 
-The `-I` argument adds your unpacked rake to the ruby `$LOAD_PATH` which
-prevents RubyGems from loading the gem version (or the default version).  The
-`-S` argument finds `rake` in the shell's `$PATH` so you don't have to type out
-the full path.
+`-I`인자는 루비 `$LOAD_PATH`에 언팩된 rake를 추가해 RubyGems가 gem 버전(혹은
+디폴트 버전)을 로딩하는 것을 방지합니다. `-S` 인자는 풀패스를 적지 않아도
+되도록 셸의 `$PATH`에서 `rake`를 찾습니다.
 
-Further Reading
----------------
+더 읽을거리
+-------------------
+{:#further-reading}
 
-This guide only shows the basics of using the `gem` command.  For information
-on what's inside a gem and how to use one you've installed see the next
-section, [What is a gem]({{ site.baseurl }}/what-is-a-gem).  For a complete reference of gem
-commands see the [Command Reference]({{ site.baseurl }}/command-reference).
+이 가이드는 `gem`의 기본적인 사용법만 보여줄 뿐입니다. gem의 내부의 동작과
+인스톨한 gem을 어떻게 사용하는 지는 다음 장인 [gem이란
+무엇인가?]({{ site.baseurl }}/what-is-a-gem)를 읽어보세요. gem 명령어의 완전한
+레퍼런스를 보시려면 [명령어 레퍼런스]({{ site.baseurl }}/command-reference)를
+보세요.
