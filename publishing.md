@@ -20,7 +20,7 @@ Ways to share your gem code with other users.
 Introduction
 ------------
 
-Now that you've [created your gem](/make-your-own-gem), you're probably ready
+Now that you've [created your gem]({{ site.baseurl }}/make-your-own-gem), you're probably ready
 to share it.  While it is perfectly reasonable to create private gems solely to
 organize the code in large private projects, it's more common to build gems so
 that they can be used by multiple projects.  This guide discusses the various
@@ -49,7 +49,7 @@ Serving Your Own Gems
 
 If you want to control who can install a gem, or directly track the activity
 surrounding a gem, then you'll want to set up a private gem server. You can
-[set up your own gem server](/run-your-own-gem-server) or use a commercial
+[set up your own gem server]({{ site.baseurl }}/run-your-own-gem-server) or use a commercial
 service such as [Gemfury](http://www.gemfury.com/).
 
 RubyGems 2.2.0 and newer support the `allowed_push_host` metadata value to
@@ -61,7 +61,7 @@ should set this value to prevent accidental pushes to rubygems.org:
       s.metadata['allowed_push_host'] = 'https://gems.my-company.example'
     end
 
-See the [Resources](/resources) guide for an up-to-date listing of options for
+See the [Resources]({{ site.baseurl }}/resources) guide for an up-to-date listing of options for
 private gem servers.
 
 Publishing to RubyGems.org
@@ -99,9 +99,9 @@ Push Permissions on RubyGems.org
 
 If you have multiple maintainers for your gem you can give your fellow
 maintainers permission to push the gem to rubygems.org through the [gem
-owner command](/command-reference/#gem_owner).
+owner command]({{ site.baseurl }}/command-reference/#gem_owner).
 
 Gem Security
 ------------
 
-See [Security](/security) page.
+See [Security]({{ site.baseurl }}/security) page.

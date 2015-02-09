@@ -184,4 +184,4 @@ Several sources were used for content for this guide:
 * [RubyGems Trust Model Overview](https://github.com/rubygems-trust/rubygems.org/wiki/Overview), [doc](http://goo.gl/ybFIO)
 * [Let’s figure out a way to start signing RubyGems](http://tonyarcieri.com/lets-figure-out-a-way-to-start-signing-rubygems)
 * [A Practical Guide to Using Signed Ruby Gems - Part 3: Signing your Own](http://blog.meldium.com/home/2013/3/6/signing-gems-how-to)
-* Also see the [Resources](/resources) page.
+* Also see the [Resources]({{ site.baseurl }}/resources) page.
