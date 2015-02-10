@@ -24,7 +24,7 @@ Consistent naming
 
 Be consistent with how your gem files in `lib` and `bin` are named. The
 [hola](https://github.com/qrush/hola) gem from the [make your own
-gem](/make-your-own-gem) guide is a great example:
+gem]({{ site.baseurl }}/make-your-own-gem) guide is a great example:
 
     % tree
     .
@@ -48,7 +48,7 @@ Naming your gem is important.  Before you pick a name for your gem, do a
 quick search on [RubyGems.org](http://rubygems.org) and
 [GitHub](https://github.com/search) to see if someone else has taken it.  Every
 published gem must have a unique name.  Be sure to read our [naming
-recommendations](/name-your-gem) when you've found a name you like.
+recommendations]({{ site.baseurl }}/name-your-gem) when you've found a name you like.
 
 Semantic versioning
 -------------------
@@ -288,7 +288,7 @@ Or use require_relative:
 
     require_relative 'foo/bar'
 
-The [make your own gem](/make-your-own-gem) guide has a great example of this
+The [make your own gem]({{ site.baseurl }}/make-your-own-gem) guide has a great example of this
 behavior in practice, including a working test suite. The code for that gem is
 [on GitHub](https://github.com/qrush/hola) as well.
 

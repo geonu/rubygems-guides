@@ -16,7 +16,7 @@ time (if you need to use Ruby 1.9) visit the
 [download](https://rubygems.org/pages/download) page.
 
 If you want to see how to require files from a gem, skip ahead to [What is a
-gem](/what-is-a-gem)
+gem]({{ site.baseurl }}/what-is-a-gem)
 
 * [Finding Gems](#finding-gems)
 * [Installing Gems](#installing-gems)
@@ -124,7 +124,7 @@ Once you've required `ap`, RubyGems automatically places its
 
 That's basically it for what's in a gem.  Drop Ruby code into `lib`, name a
 Ruby file the same as your gem (for the gem "freewill" the file should be
-`freewill.rb`, see also [name your gem](/name-your-gem)) and it's loadable by
+`freewill.rb`, see also [name your gem]({{ site.baseurl }}/name-your-gem)) and it's loadable by
 RubyGems.
 
 The `lib` directory itself normally contains only one `.rb` file and a
@@ -252,5 +252,5 @@ Further Reading
 
 This guide only shows the basics of using the `gem` command.  For information
 on what's inside a gem and how to use one you've installed see the next
-section, [What is a gem](/what-is-a-gem).  For a complete reference of gem
-commands see the [Command Reference](/command-reference).
+section, [What is a gem]({{ site.baseurl }}/what-is-a-gem).  For a complete reference of gem
+commands see the [Command Reference]({{ site.baseurl }}/command-reference).

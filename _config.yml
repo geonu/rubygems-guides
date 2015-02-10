@@ -1,4 +1,5 @@
 ---
+baseurl: /rubygems-guides
 exclude:
 - README.md
 - CNAME

@@ -30,7 +30,7 @@ Your first gem
 
 I started with just one Ruby file for my `hola` gem, and the gemspec.
 You'll need a new name for yours (maybe `hola_yourusername`) to publish it. Check the Patterns guide for
-[basic recommendations](/patterns/#consistent-naming) to follow
+[basic recommendations]({{ site.baseurl }}/patterns/#consistent-naming) to follow
 when naming a gem.
 
     % tree
@@ -83,7 +83,7 @@ information you see on a gem page
 Look familiar? The gemspec is also Ruby, so you can wrap scripts to generate
 the file names and bump the version number. There are lots of fields the
 gemspec can contain. To see them all check out the full
-[reference](/specification-reference).
+[reference]({{ site.baseurl }}/specification-reference).
 
 After you have created a gemspec, you can build a gem from it. Then you can install
 the generated gem locally to test it out.
@@ -247,7 +247,7 @@ configuring their load paths. However, if you're running the code outside of
 RubyGems, you have to configure things yourself. It's possible to manipulate
 the `$LOAD_PATH` from within the code itself, but that's considered an
 anti-pattern in most cases. There are many more anti-patterns (and good patterns!)
-for gems, explained in [this guide](/patterns).
+for gems, explained in [this guide]({{ site.baseurl }}/patterns).
 
 If you've added more files to your gem, make sure to remember to add them to
 your gemspec's `files` array before publishing a new gem! For this reason (among others),
@@ -321,7 +321,7 @@ You can add more executables as well in the `bin` directory if you need to,
 there's an `executables` array field on the gemspec.
 
 > Note that you should change the gem's version when pushing up a new release.
-> For more information on gem versioning, see the [Patterns Guide](/patterns/#semantic-versioning)
+> For more information on gem versioning, see the [Patterns Guide]({{ site.baseurl }}/patterns/#semantic-versioning)
 
 Writing tests
 --------------

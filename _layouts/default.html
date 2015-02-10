@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>{{ page.title }} - RubyGems Guides</title>
+    <title>{{ page.title }} - RubyGems 가이드</title>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.icns">
     <meta http-equiv="Description" name="Description" content="Tutorials, guides, FAQs for RubyGems package management" />
     <meta http-equiv="Keywords" name="Keywords" content="rubygems, gems, programming, ruby, packages" />
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
-    <link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+    <link href="{{ site.baseurl }}/stylesheets/application.css" rel="stylesheet" type="text/css" />
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="/javascripts/mobile-nav.js" type="text/javascript"></script>
+    <script src="{{ site.baseurl }}/javascripts/mobile-nav.js" type="text/javascript"></script>
     <script src="//use.typekit.net/omu5dik.js" type="text/javascript"></script>
     <script>
       try{Typekit.load();}catch(e){}
@@ -52,7 +52,7 @@
 
         <div class="header__nav-links-wrap">
           <form accept-charset="UTF-8" action="https://rubygems.org/search" class="header__search-wrap" id="main-search" method="get"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
-            <input class="header__search" id="query" name="query" placeholder="Search Gems&hellip;" type="search" />
+            <input class="header__search" id="query" name="query" placeholder="젬 검색&hellip;" type="search" />
             <label for="query">
               <span class="t-hidden">Search gems</span>
             </label>
@@ -60,9 +60,9 @@
           </form>
 
           <nav class="header__nav-links">
-            <a class="header__nav-link" href="https://rubygems.org/gems">Gems</a>
-            <a class="header__nav-link is-active" href="/">Guides</a>
-            <a class="header__nav-link" href="/contributing">Contribute</a>
+            <a class="header__nav-link" href="https://rubygems.org/gems">젬</a>
+            <a class="header__nav-link is-active" href="{{ site.baseurl }}/">가이드</a>
+            <a class="header__nav-link" href="{{ site.baseurl }}/contributing">기여하기</a>
           </nav>
         </div>
       </div>
@@ -70,28 +70,28 @@
 
     <main class="main--interior">
       <div class="l-wrap--b">
-        <a class="t-display page__heading" href="/">Guides</a>
+        <a class="t-display page__heading" href="{{ site.baseurl }}/">가이드</a>
         <div class="l-overflow">
           <div class="l-col--l">
             <div class="nav--v">
-              <a class="nav--v__link" href="/rubygems-basics">RubyGems Basics</a>
-              <a class="nav--v__link" href="/what-is-a-gem">What is a gem?</a>
-              <a class="nav--v__link" href="/make-your-own-gem">Make your own gem</a>
-              <a class="nav--v__link" href="/gems-with-extensions">Gems with Extensions</a>
-              <a class="nav--v__link" href="/name-your-gem">Name your gem</a>
-              <a class="nav--v__link" href="/publishing">Publishing your gem</a>
-              <a class="nav--v__link" href="/security">Security Practices</a>
-              <a class="nav--v__link" href="/patterns">Patterns</a>
-              <a class="nav--v__link" href="/specification-reference">Specification Reference</a>
-              <a class="nav--v__link" href="/command-reference">Command Reference</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/rubygems-basics">RubyGems 베이직</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/what-is-a-gem">젬이란 무엇인가?</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/make-your-own-gem">젬 만들어 보기</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/gems-with-extensions">확장기능을 포함한 젬</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/name-your-gem">젬 이름짓기</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/publishing">젬 배포하기</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/security">보안 수칙</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/patterns">패턴</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/specification-reference">사양 참고자료</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/command-reference">커맨드 참고자료</a>
               <a class="nav--v__link" href="http://docs.seattlerb.org/rubygems">RubyGems API</a>
-              <a class="nav--v__link" href="/rubygems-org-api">RubyGems.org API</a>
-              <a class="nav--v__link" href="/run-your-own-gem-server">Run your own gem server</a>
-              <a class="nav--v__link" href="/resources">Resources</a>
-              <a class="nav--v__link" href="/contributing">Contributing to RubyGems</a>
-              <a class="nav--v__link" href="/faqs">Frequently Asked Questions</a>
-              <a class="nav--v__link" href="/plugins">Plugins</a>
-              <a class="nav--v__link" href="/credits">Credits</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/rubygems-org-api">RubyGems.org API</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/run-your-own-gem-server">젬 서버 운영하기</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/resources">리소스</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/contributing">RubyGems에 기여하기</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/faqs">FAQ</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/plugins">플러그인</a>
+              <a class="nav--v__link" href="{{ site.baseurl }}/credits">만든 사람들</a>
             </div>
           </div>
           <div class="l-colspan--r">
@@ -102,11 +102,11 @@
         </div>
 
         <div class="paginated-nav-links">
-          <a class="paginated-nav-link--prev" data-icon="&lt;" href="{{ page.previous }}">
-            <span>Previous</span>
+          <a class="paginated-nav-link--prev" data-icon="&lt;" href="{{ site.baseurl }}{{ page.previous }}">
+            <span>이전</span>
           </a>
-          <a class="paginated-nav-link--next" data-icon="&gt;" href="{{ page.next }}">
-            <span>Next</span>
+          <a class="paginated-nav-link--next" data-icon="&gt;" href="{{ site.baseurl }}{{ page.next }}">
+            <span>다음</span>
           </a>
         </div>
       </div>
@@ -126,7 +126,7 @@
             <a class="nav--v__link--footer" href="http://help.rubygems.org/">Help</a>
           </div>
           <div class="l-colspan--l colspan--l--has-border">
-            <p class="footer__about">RubyGems.org is the Ruby community&rsquo;s gem hosting service. Instantly publish your gems and install them. Use the API to interact and find out more information about available gems. Become a contributor and enhance the site with your own changes.</p>
+            <p class="footer__about">RubyGems.org는 루비 커뮤니티의 젬 호스팅 서비스입니다. 즉시 젬을 배포하고 인스톨할 수 있습니다. API를 사용하면 사용가능한 젬의 정보를 더 상호작용하고 찾을 수 있습니다.  사이트를 직접 수정해서 개선하고 기여자가 되보세요.</p>
           </div>
         </div>
       </div>

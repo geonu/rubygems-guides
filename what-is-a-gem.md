@@ -61,9 +61,9 @@ Here, you can see the major components of a gem:
   The gem's files, test information, platform, version number and more are all
   laid out here along with the author's email and name.
 
-[More information on the gemspec file](/specification-reference/)
+[More information on the gemspec file]({{ site.baseurl }}/specification-reference/)
 
-[Building your own gem](/make-your-own-gem/)
+[Building your own gem]({{ site.baseurl }}/make-your-own-gem/)
 
 The Gemspec
 -----------
@@ -73,7 +73,7 @@ know who wrote a gem, when, and what it does.  The gemspec contains this
 information.
 
 Here's an example of a gemspec file. You can learn more in [how to make a
-gem](/make-your-own-gem).
+gem]({{ site.baseurl }}/make-your-own-gem).
 
     % cat freewill.gemspec
     Gem::Specification.new do |s|
@@ -88,7 +88,7 @@ gem](/make-your-own-gem).
     end
 
 For more information on the gemspec, please check out the full [Specification
-Reference](/specification-reference) which goes over each metadata field in
+Reference]({{ site.baseurl }}/specification-reference) which goes over each metadata field in
 detail.
 
 Credits
