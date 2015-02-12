@@ -1,34 +1,34 @@
 ---
 layout: default
-title: What is a gem?
+title: gem이란 무엇인가?
 url: /what-is-a-gem
 previous: /rubygems-basics
 next: /make-your-own-gem
 ---
 
-<em class="t-gray">Unpack the mystery behind what's in a RubyGem.</em>
+<em class="t-gray">RubyGem안에 무엇이 들어있는지 미스터리 파해치기.</em>
 
-Structure of a Gem
+gem의 구조
 ------------------
 
-Each gem has a name, version, and platform. For example, the
-[rake](http://rubygems.org/gems/rake) gem has a `0.8.7` version (from May,
-2009).  Rake's platform is `ruby`, which means it works on any platform Ruby
-runs on.
+각 gem은 이름, 버전, 플렛폼을 가지고 있습니다. 예를 들어
+[rake](http://rubygems.org/gems/rake) gem은 `0.8.7` 버전 (2009년 5월 기준)을
+가지고 있고 플렛폼은 `ruby`입니다. 이 말은 Ruby가 돌아가는 어떤 플렛폼에서도
+사용가능하다는 의미입니다.
 
-Platforms are based on the CPU architecture, operating system type and
-sometimes the operating system version.  Examples include "x86-mingw32" or
-"java".  The platform indicates the gem only works with a ruby built for the
-same platform.  RubyGems will automatically download the correct version for
-your platform.  See `gem help platform` for full details.
+플렛폼은 CPU 아키텍쳐, 운영체제 타입이나 가끔은 운영체제 버전에 기반합니다.
+예를 들어 플렛폼에는 "x86-mingw32" 나 "java" 같은게 있습니다. 플렛폼은
+같은 플렛폼에서 빌드한 루비에서만 gem이 동작하는 것을 나타냅니다. RubyGems은
+자동으로 당신의 플렛폼에 맞는 버전을 다운로드합니다. 자세한 내용은
+`gem help platform`을 보세요.
 
-Inside a gems are the following components:
+gem의 내부에는 다음과 같은 구성요소가 있습니다.
 
-* Code (including tests and supporting utilities)
-* Documentation
+* (테스트와 지원 유틸리티를 포함한) 코드
+* 문서
 * gemspec
 
-Each gem follows the same standard structure of code organization:
+각 gem은 같은 코드 구성의 표준 구조를 따릅니다.
 
     % tree freewill
     freewill/
@@ -42,38 +42,34 @@ Each gem follows the same standard structure of code organization:
     ├── Rakefile
     └── freewill.gemspec
 
-Here, you can see the major components of a gem:
+여기 gem의 주요 구성요소를 보실수 있습니다.
 
-* The `lib` directory contains the code for the gem
-* The `test` or `spec` directory contains tests, depending on which test
-  framework the developer uses
-* A gem usually has a `Rakefile`, which the
-  [rake](http://rake.rubyforge.org/) program uses to automate tests,
-  generate code, and perform other tasks.
-* This gem also includes an executable file in the
-  `bin` directory, which will be loaded into the user's `PATH` when the gem is
-  installed.
-* Documentation is usually included in the `README` and inline with the code.
-  When you install a gem, documentation is generated automatically for you.
-  Most gems include [RDoc](http://rdoc.sourceforge.net/doc/) documentation,
-  but some use [YARD](http://yardoc.org/) docs instead.
-* The final piece is the gemspec, which contains information about the gem.
-  The gem's files, test information, platform, version number and more are all
-  laid out here along with the author's email and name.
+* `lib` 디렉토리는 gem을 위한 코드를 포함합니다.
+* 개발자가 어떤 테스트 프레임워크를 사용하냐에 따라, `test`나 `spec` 디렉토리는
+  테스트를 포함합니다.
+* gem은 보통 [rake](http://rake.rubyforge.org/) 프로그램에서 테스트 자동화, 코드
+  생성, 다른 작업을 수행하는데 사용하는  `Rakefile`을 가지고 있습니다.
+* 이 gem은 `bin` 디렉토리안에 실행 파일도 가지고 있습니다. `bin` 디렉토리는 gem이
+  인스톨 될 때 유저의 `PATH`에 로드될 것 입니다.
+* 문서는 보통 `README`파일이나 코드 안에 포합됩니다. gem을 인스톨하면, 문서는
+  자동으로 생성됩니다. 대부분의 gem은 [RDoc](http://rdoc.sourceforge.net/doc/)
+  문서를 사용하지만, [YARD](http://yardoc.org/) 문서를 사용하는 것도 있습니다.
+* 마지막 조각은 gem에 관한 정보를 가지고 있는 gemspec입니다.
+  gem의 파일들, 테스트 정보, 플렛폼, 버전 번호 등이 저자의 이메일과 이름과 함께
+  여기에 배치됩니다.
 
-[More information on the gemspec file]({{ site.baseurl }}/specification-reference/)
+[gemspec 파일에 대한 더 자세한 정보]({{ site.baseurl }}/specification-reference/)
 
-[Building your own gem]({{ site.baseurl }}/make-your-own-gem/)
+[gem 만들어 보기]({{ site.baseurl }}/make-your-own-gem/)
 
-The Gemspec
+Gemspec
 -----------
 
-Your application, your gem's users, and you 6 months from now will want to
-know who wrote a gem, when, and what it does.  The gemspec contains this
-information.
+6개월 후에 당신과 애플리케이션, gem의 사용자는 누가 언제 gem을 작성했고 무엇을
+하는지를 알고 싶어할 것입니다. gemspec은 이런 정보를 가지고 있습니다.
 
-Here's an example of a gemspec file. You can learn more in [how to make a
-gem]({{ site.baseurl }}/make-your-own-gem).
+여기 gemspec 파일의 예제가 있습니다. 더 자세한 내용은 [gem 만들어
+보기]({{ site.baseurl }}/make-your-own-gem)에서 배우실 수 있습니다.
 
     % cat freewill.gemspec
     Gem::Specification.new do |s|
@@ -87,13 +83,12 @@ gem]({{ site.baseurl }}/make-your-own-gem).
       s.files       = ["lib/freewill.rb", ...]
     end
 
-For more information on the gemspec, please check out the full [Specification
-Reference]({{ site.baseurl }}/specification-reference) which goes over each metadata field in
-detail.
+gemspec에 관한 더 자세한 정보는 전체 [사양 레퍼런스]({{ site.baseurl }}/specification-reference)의
+각 메타데이터의 상세정보를 확인하세요.
 
 Credits
 -------
 
-This guide was adapted from [Gonçalo
-Silva](https://twitter.com/#!/goncalossilva)'s original tutorial on
-docs.rubygems.org and from Gem Sawyer, Modern Day Ruby Warrior.
+이 가이드는 [Gonçalo Silva](https://twitter.com/#!/goncalossilva)님이
+docs.rubygems.org에 올린 오리지널 투토리얼과
+Gem Sawyer, Modern Day Ruby Warrior를 차용했습니다.
