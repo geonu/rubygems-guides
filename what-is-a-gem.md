@@ -6,20 +6,20 @@ previous: /rubygems-basics
 next: /make-your-own-gem
 ---
 
-<em class="t-gray">RubyGem안에 무엇이 들어있는지 미스터리 파해치기.</em>
+<em class="t-gray">RubyGem 안에 무엇이 들어있는지 미스터리 파헤치기.</em>
 
 gem의 구조
 ------------------
 
-각 gem은 이름, 버전, 플렛폼을 가지고 있습니다. 예를 들어
+각 gem은 이름, 버전, 플랫폼을 가지고 있습니다. 예를 들어
 [rake](http://rubygems.org/gems/rake) gem은 `0.8.7` 버전 (2009년 5월 기준)을
 가지고 있고 플렛폼은 `ruby`입니다. 이 말은 Ruby가 돌아가는 어떤 플렛폼에서도
-사용가능하다는 의미입니다.
+사용 가능하다는 의미입니다.
 
-플렛폼은 CPU 아키텍쳐, 운영체제 타입이나 가끔은 운영체제 버전에 기반합니다.
-예를 들어 플렛폼에는 "x86-mingw32" 나 "java" 같은게 있습니다. 플렛폼은
-같은 플렛폼에서 빌드한 루비에서만 gem이 동작하는 것을 나타냅니다. RubyGems은
-자동으로 당신의 플렛폼에 맞는 버전을 다운로드합니다. 자세한 내용은
+플랫폼은 CPU 아키텍처, 운영체제 종류나 가끔은 운영체제 버전에 기반합니다.
+예를 들어 플랫폼에는 "x86-mingw32" 나 "java" 같은 게 있습니다. 플랫폼은
+같은 플랫폼에서 빌드한 루비에서만 gem이 동작하는 것을 나타냅니다. RubyGems는
+자동으로 당신의 플랫폼에 맞는 버전을 다운로드합니다. 자세한 내용은
 `gem help platform`을 보세요.
 
 gem의 내부에는 다음과 같은 구성요소가 있습니다.
@@ -42,20 +42,20 @@ gem의 내부에는 다음과 같은 구성요소가 있습니다.
     ├── Rakefile
     └── freewill.gemspec
 
-여기 gem의 주요 구성요소를 보실수 있습니다.
+여기 gem의 주요 구성요소를 보실 수 있습니다.
 
 * `lib` 디렉토리는 gem을 위한 코드를 포함합니다.
 * 개발자가 어떤 테스트 프레임워크를 사용하냐에 따라, `test`나 `spec` 디렉토리는
   테스트를 포함합니다.
 * gem은 보통 [rake](https://rubygems.org/gems/rake) 프로그램에서 테스트 자동화,
-  코드 생성, 다른 작업을 수행하는데 사용하는  `Rakefile`을 가지고 있습니다.
-* 이 gem은 `bin` 디렉토리안에 실행 파일도 가지고 있습니다. `bin` 디렉토리는 gem이
-  인스톨 될 때 유저의 `PATH`에 로드될 것 입니다.
-* 문서는 보통 `README`파일이나 코드 안에 포합됩니다. gem을 인스톨하면, 문서는
+  코드 생성, 다른 작업을 수행하는데 사용하는 `Rakefile`을 가지고 있습니다.
+* 이 gem은 `bin` 디렉토리 안에 실행 파일도 가지고 있습니다. `bin` 디렉토리는
+  gem이 설치될 때 유저의 `PATH`에 로드될 것 입니다.
+* 문서는 보통 `README` 파일이나 코드 안에 포합됩니다. gem을 설치하면, 문서는
   자동으로 생성됩니다. 대부분의 gem은 [RDoc](http://rdoc.sourceforge.net/doc/)
   문서를 사용하지만, [YARD](http://yardoc.org/) 문서를 사용하는 것도 있습니다.
 * 마지막 조각은 gem에 관한 정보를 가지고 있는 gemspec입니다.
-  gem의 파일들, 테스트 정보, 플렛폼, 버전 번호 등이 저자의 이메일과 이름과 함께
+  gem의 파일들, 테스트 정보, 플랫폼, 버전 번호 등이 저자의 이메일, 이름과 함께
   여기에 배치됩니다.
 
 [gemspec 파일에 대한 더 자세한 정보]({{ site.baseurl }}/specification-reference/)
@@ -89,6 +89,6 @@ gemspec에 관한 더 자세한 정보는 전체 [사양 레퍼런스]({{ site.b
 Credits
 -------
 
-이 가이드는 [Gonçalo Silva](https://twitter.com/#!/goncalossilva)님이
-docs.rubygems.org에 올린 오리지널 투토리얼과
+이 가이드는 [Gonçalo Silva](https://twitter.com/#!/goncalossilva) 님이
+docs.rubygems.org에 올린 오리지널 튜토리얼과
 Gem Sawyer, Modern Day Ruby Warrior를 차용했습니다.

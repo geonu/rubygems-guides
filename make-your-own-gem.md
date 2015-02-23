@@ -6,11 +6,10 @@ previous: /what-is-a-gem
 next: /gems-with-extensions
 ---
 
-<em class="t-gray">시작에서 끝까지, 루비코드를 어떻게 gem으로 패키징하는지 배우기.</em>
-
+<em class="t-gray">처음부터 끝까지, 루비 코드를 어떻게 gem으로 패키징 하는지 배우기.</em>
 
 * [서론](#introduction)
-* [처음 만드는 gem](#your-first-gem)
+* [당신의 첫 번째 gem](#your-first-gem)
 * [파일을 더 require해 보기](#requiring-more-files)
 * [실행 파일 추가하기](#adding-an-executable)
 * [테스트 작성하기](#writing-tests)
@@ -22,17 +21,17 @@ next: /gems-with-extensions
 {:#introduction}
 
 직접 만든 gem을 만들고 배포하는 것은 RubyGems에 들어있는 툴 덕분에 간단합니다.
-간단한 “hello world” gem을 만들어 봅시다. 가볍게 집에서 함께해보세요! 여기서
+간단한 "hello world" gem을 만들어 봅시다. 가볍게 집에서 함께해보세요! 여기서
 만들 gem의 코드는 [GitHub](https://github.com/qrush/hola)에 올려두었습니다.
 
-처음 만드는 gem
+당신의 첫 번째 gem
 ------------------
 {:#your-first-gem}
 
-`hola` gem은 단 하나의 루비 파일과 gemspec으로 시작됩니다.
+`hola` gem은 단 하나의 루비 파일과 gemspec으로 시작합니다.
 아마 배포하시려면 (`hola_yourusername`같은) 새로운 이름이 필요할 것입니다. gem의
-이름을 지으실 때는 [기본 추천 사항]({{ site.baseurl }}/patterns/#consistent-naming)
-을 위한 명명 패턴 가이드를 살펴보세요.
+이름을 지으실 때는 [기본 추천 사항]({{ site.baseurl }}/patterns/#consistent-naming)을
+위한 명명 패턴 가이드를 살펴보세요.
 
     % tree
     .
@@ -40,12 +39,12 @@ next: /gems-with-extensions
     └── lib
         └── hola.rb
 
-패키지의 코드는 `lib`안에 들어갑니다. `require 'hola'`이 실행될 때 로드되기 때문에,
+패키지의 코드는 `lib` 안에 들어갑니다. `require 'hola'`가 실행될 때 로드되기 때문에,
 컨벤션에서는 일반적으로 gem의 이름과 *같은* 루비 파일 *하나*만 가지고 있길
 권장합니다. 그 파일은 API와 gem 코드의 설정을 담당합니다.
 
-`lib/hola.rb` 안의 코드는 뼈대 만 있습니다. 이 코드는 그저 gem에서 어떤 출력을
-생성할 수 있다는 것을 보여줄 뿐 입니다.
+`lib/hola.rb` 안의 코드는 뼈대만 있습니다. 이 코드는 그저 gem에서 어떤 출력을
+생성할 수 있다는 것을 보여줄 뿐입니다.
 
     % cat lib/hola.rb
     class Hola
@@ -76,7 +75,7 @@ gemspec은 [RubyGems.org](http://rubygems.org)에 대한 인터페이스이기�
 
 > description 항목은 이 예제에서 보는 것보다 훨씬 길어질 수 있습니다. description이
 > `/^== [A-Z]/`에 매치하면, RubyGems의 웹 사이트에 표시할 때는 [RDoc의 마크업
-> 포메터](https://github.com/rdoc/rdoc)를 통해 실행됩니다. 데이터를 사용하는
+> 포매터](https://github.com/rdoc/rdoc)를 통해 실행됩니다. 데이터를 사용하는
 > 다른 곳은 이 마크업을 이해하지 못할 수도 있으므로 주의하세요.
 
 친숙해 보이나요? gemspec도 루비입니다. 그래서 스크립트를 감싸 파일 이름을
@@ -97,7 +96,7 @@ gemspec을 만들었으면, 거기에서 gem을 빌드 할 수 있습니다. 그
     Successfully installed hola-0.0.0
     1 gem installed
 
-물론, 테스트가 끝난 건 아닙니다. 마지막으로 gem을 `require`하고 사용해 보죠.
+물론, 테스트가 끝난 건 아닙니다. 마지막으로 gem을 `require` 하고 사용해 보죠.
 
     % irb
     >> require 'hola'
@@ -122,14 +121,14 @@ gemspec을 만들었으면, 거기에서 gem을 빌드 할 수 있습니다. 그
 > 패스워드를 입력하면, api_key.yaml 파일을 다운로드하려 합니다. 이 파일을
 > 'credentials'이라 이름 지어 ~/.gem에 저장하시면 됩니다.
 
-이 설정이 끝나면, gem을 Rubygems에 올릴 수 있습니다.
+이 설정이 끝나면, gem을 RubyGems에 올릴 수 있습니다.
 
     % gem push hola-0.0.0.gem
     Pushing gem to RubyGems.org...
     Successfully registered gem: hola (0.0.0)
 
-이 짧은 시간에(보통은 1분 이하) gem은 누구나 인스톨할 수 있게 될 것입니다.
-[RubyGems.org 사이트](https://rubygems.org/gems/hola)에서 확인하거나 RubyGems이
+이 짧은 시간에(보통은 1분 이하) gem은 누구나 설치할 수 있게 될 것입니다.
+[RubyGems.org 사이트](https://rubygems.org/gems/hola)에서 확인하거나 RubyGems가
 깔린 어떤 컴퓨터에서든 받을 수 있습니다.
 
     % gem list -r hola
@@ -142,7 +141,7 @@ gemspec을 만들었으면, 거기에서 gem을 빌드 할 수 있습니다. 그
     Successfully installed hola-0.0.0
     1 gem installed
 
-루비와 RubyGems으로 정말 쉽게 코드를 공유할 수 있습니다.
+루비와 RubyGems로 정말 쉽게 코드를 공유할 수 있습니다.
 
 파일을 더 require해 보기
 ------------------------
@@ -174,8 +173,8 @@ gemspec을 만들었으면, 거기에서 gem을 빌드 할 수 있습니다. 그
     end
 
 파일이 점점 혼잡해지네요. `Translator`를 새 파일로 쪼개봅시다. 전에 말했듯이
-gem의 루트 파일은 gem 코드의 로딩을 담당합니다. 다른 파일은 보통 `lib`아래의
-gem과 같은 이름의 디렉터리에 넣습니다. 이 파일은 이렇게 쪼갤 수 있습니다.
+gem의 루트 파일은 gem 코드의 로드를 담당합니다. 다른 파일은 보통 `lib` 아래의
+gem과 같은 이름의 디렉토리에 넣습니다. 이 파일은 이렇게 쪼갤 수 있습니다.
 
     % tree
     .
@@ -185,7 +184,7 @@ gem과 같은 이름의 디렉터리에 넣습니다. 이 파일은 이렇게 �
         │   └── translator.rb
         └── hola.rb
 
-`Translator`는 이제 `lib/hola`안에 있습니다. 이 파일은 `lib/hola.rb`에서 쉽게
+`Translator`는 이제 `lib/hola` 안에 있습니다. 이 파일은 `lib/hola.rb`에서 쉽게
 `require`문으로 가져올 수 있습니다. `Translator`의 코드는 그렇게 많이 바뀌지
 않습니다.
 
@@ -205,7 +204,7 @@ gem과 같은 이름의 디렉터리에 넣습니다. 이 파일은 이렇게 �
       end
     end
 
-하지만 `hola.rb`파일은 `Translator`를 로드하기 위한 코드가 조금 추가되었습니다.
+하지만 `hola.rb` 파일에는 `Translator`를 로드하기 위한 코드가 조금 추가되었습니다.
 
     % cat lib/hola.rb
     class Hola
@@ -238,9 +237,9 @@ gem과 같은 이름의 디렉터리에 넣습니다. 이 파일은 이렇게 �
     irb(main):002:0> Hola.hi("spanish")
     => "hola mundo"
 
-우리는 여기서 `-Ilib`이라는 낯선 커맨드라인 플래그를 사용합니다. 보통 RubyGems은
-`lib` 디렉터리를 인클루드해 주어서, 사용자는 로드 패스에 대해 신경 쓸 필요가
-없습니다. 하지만, RubyGems없이 코드를 실행한다면, 직접 설정을 해야 합니다.
+우리는 여기서 `-Ilib`이라는 낯선 커맨드라인 플래그를 사용합니다. 보통 RubyGems는
+`lib` 디렉토리를 인클루드해 주어서, 사용자는 로드 패스에 대해 신경 쓸 필요가
+없습니다. 하지만, RubyGems 없이 코드를 실행한다면, 직접 설정을 해야 합니다.
 `$LOAD_PATH`를 코드 안에서 조작할 수도 있지만, 대부분은 안티패턴으로
 간주합니다. [이 가이드]({{ site.baseurl }}/patterns)에는, 좀 더 많은 gem을 위한
 안티 패턴(과 좋은 패턴)이 설명되어 있습니다.
@@ -251,12 +250,11 @@ gem에 더 많은 파일을 추가하실 거면, 배포하기 전에 그 파일�
 [Hoe](https://github.com/seattlerb/hoe),
 [Jeweler](https://github.com/technicalpickles/jeweler),
 [Rake](https://github.com/jimweirich/rake),
-[Bundler](http://railscasts.com/episodes/245-new-gem-with-bundler), 나
-[그냥 동적 gemspec
-](https://github.com/wycats/newgem-template/blob/master/newgem.gemspec)로
+[Bundler](http://railscasts.com/episodes/245-new-gem-with-bundler)나
+[그냥 동적 gemspec](https://github.com/wycats/newgem-template/blob/master/newgem.gemspec)으로
 자동화합니다.
 
-여기에 더 많은 코드와 디렉터리를 추가하는 것은 비슷하게 진행됩니다. 그럴듯할 때
+여기에 더 많은 코드와 디렉토리를 추가하는 것은 비슷하게 진행됩니다. 그럴듯할 때
 파일을 쪼개세요. 프로젝트를 합리적으로 진행하면 당신과 미래에 이 코드를
 유지보수하게 될 사람을 두통에서 구할 수 있습니다.
 
@@ -265,9 +263,9 @@ gem에 더 많은 파일을 추가하실 거면, 배포하기 전에 그 파일�
 {:#adding-an-executable}
 
 루비 코드의 라이브러리 말고도, gem은 하나 이상의 실행 파일을 셸의 `PATH`에
-추가할 수 있습니다. 이런식으로 사용하는 가장 잘 알려진 예로 `rake`가 있습니다.
-[JSON](http://rubygems.org/gems/json)(루비 1.9에 기본으로 포함) gem에 포함된 
-`prettify_json.rb`도 굉장히 유용합니다. 이는 JSON를 읽을 수 있게 포메팅해줍니다.
+추가할 수 있습니다. 이런 식으로 사용하는 가장 잘 알려진 예로 `rake`가 있습니다.
+[JSON](http://rubygems.org/gems/json)(루비 1.9에 기본으로 포함) gem에 포함된
+`prettify_json.rb`도 굉장히 유용합니다. 이는 JSON를 읽을 수 있게 포매팅해줍니다.
 여기 예제가 있습니다.
 
     % curl -s http://jsonip.com/ | \
@@ -276,7 +274,7 @@ gem에 더 많은 파일을 추가하실 거면, 배포하기 전에 그 파일�
       "ip": "24.60.248.134"
     }
 
-실행 파일을 gem에 추가하는 것은 간단합니다. gem의 `bin` 디렉터리에 파일을 넣고,
+실행 파일을 gem에 추가하는 것은 간단합니다. gem의 `bin` 디렉토리에 파일을 넣고,
 gemspec 실행 파일의 목록에 추가하면 됩니다. Hola gem에 하나 추가해 봅시다.
 먼저 파일을 작성해서 실행파일로 만드세요.
 
@@ -294,7 +292,7 @@ Hola의 실행 파일은 이렇습니다.
     require 'hola'
     puts Hola.hi(ARGV[0])
 
-이제, gem을 로드하고 첫 번째 커맨드 라인 인자로 인사할 언어를 넣으면 됩니다.
+이제, gem을 로드하고 인사할 언어를 첫 번째 커맨드 라인 인자로 넣으면 됩니다.
 여기 실행 예가 있습니다.
 
     % ruby -Ilib ./bin/hola
@@ -313,7 +311,7 @@ Hola의 실행 파일은 이렇습니다.
       s.executables << 'hola'
 
 새로운 gem을 올리면 직접 만든 커맨드 라인 유틸리티가 배포됩니다! 필요에 따라
-실행 파일을 좀 더 `bin` 디렉터리에 추가하고 gemspec의 `executables`배열에도
+실행 파일을 좀 더 `bin` 디렉토리에 추가하고 gemspec의 `executables` 배열에도
 추가할 수 있습니다.
 
 > 새로 릴리스할 때 gem의 버전을 변경해야 하는 것에 주의하세요.
@@ -324,9 +322,9 @@ Hola의 실행 파일은 이렇습니다.
 -----------------
 {:#writing-tests}
 
-gem을 테스트하는 것은 매우 중요합니다. 코드의 동장을 보장할 뿐만 아니라, 다른
+gem을 테스트하는 것은 매우 중요합니다. 코드의 동작을 보장할 뿐만 아니라, 다른
 사람이 코드의 동작을 이해하는 데에도 도움이 됩니다. gem을 평가할 때, 루비
-개발자는 코드를 신뢰성을 평가하는 기준으로 테스트가 잘되어 있는지(아니면
+개발자는 코드를 신뢰성을 평가하는 기준으로 테스트가 잘 되어 있는지(아니면
 없는지)를 보는 경향이 있습니다.
 
 gem은 패키지에 테스트 파일을 포함시켜, 다운로드 후에 테스트를 돌려 볼 수 있게
@@ -334,7 +332,7 @@ gem은 패키지에 테스트 파일을 포함시켜, 다운로드 후에 테스
 사이트가 생겼습니다. 여기서는 어떻게 루비 인터프리터가 다른 아키텍처에서 gem을
 테스트하고 있는지 문서화하고 있습니다.
 
-한줄 요약: **gem을 테스트하세요!**
+한 줄 요약: **gem을 테스트하세요!**
 
 `Test::Unit`는 루비에 포함된 테스트 프레임워크입니다. 그리고 사용법에 관한 아주
 [많은](http://www.mikeperham.com/2012/09/25/minitest-ruby-1-9s-test-framework/)
@@ -343,7 +341,7 @@ gem은 패키지에 테스트 파일을 포함시켜, 다운로드 후에 테스
 [RSpec](http://rspec.info/)이 대중적으로 많이 하는 선택입니다. 결국, 무엇을
 사용하는가는 중요하지 않습니다. 그냥 **테스트**하세요!
 
-Hola에 테스트를 추가해 봅시다. `Rakefile`이라는 파일과 `test` 디렉터리를 새로
+Hola에 테스트를 추가해 봅시다. `Rakefile`이라는 파일과 `test` 디렉토리를 새로
 더 추가할 필요가 있습니다.
 
     % tree
@@ -410,15 +408,15 @@ hola를 위한 기본 테스트 파일은 여기 있습니다.
 
 녹색이네요! 뭐, 셸의 색상에 따라 다르긴 합니다. 좀 더 훌륭한 예제를 보시려면
 [GitHub](https://github.com/search?utf8=%E2%9C%93&q=stars%3A%3E100+forks%3A%3E10&type=Repositories&ref=advsearch&l=Ruby)에서
-다른 코드를 찾아서 읽어보시는 것이 최고입니다.
+다른 코드를 찾아서 읽어보는 것이 최고입니다.
 
 코드 문서화하기
 -------------------------
 {:#documenting-your-code}
 
 기본적으로 대부분의 gem은 문서를 생성하기 위해 RDoc을 사용합니다. 코드를 RDoc에
-맞춰 작성하기 위한 아주 많은 [좋은
-튜토리얼](http://docs.seattlerb.org/rdoc/RDoc/Markup.html)이 있습니다.
+맞춰 작성하기 위한 [좋은 튜토리얼](http://docs.seattlerb.org/rdoc/RDoc/Markup.html)이
+아주 많이 있습니다.
 여기에 간단한 예를 들죠.
 
     # The main Hola driver
