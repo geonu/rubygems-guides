@@ -6,7 +6,7 @@ previous: /what-is-a-gem
 next: /gems-with-extensions
 ---
 
-<em class="t-gray">처음부터 끝까지, 루비 코드를 어떻게 gem으로 패키징 하는지 배우기.</em>
+<em class="t-gray">처음부터 끝까지, 루비 코드를 어떻게 gem으로 패키징 하는지 배우기</em>
 
 * [서론](#introduction)
 * [당신의 첫 번째 gem](#your-first-gem)
