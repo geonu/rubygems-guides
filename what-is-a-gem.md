@@ -6,7 +6,7 @@ previous: /rubygems-basics
 next: /make-your-own-gem
 ---
 
-<em class="t-gray">RubyGem 안에 무엇이 들어있는지 미스터리 파헤치기.</em>
+<em class="t-gray">RubyGem 안에 무엇이 들어있는지 미스터리 파헤치기</em>
 
 gem의 구조
 ------------------

@@ -5,7 +5,7 @@ previous: /credits
 next: /rubygems-basics
 ---
 
-<em class="t-gray">RubyGems가 어떻게 동작하는지와 어떻게 직접 만드는지 배웁시다.</em>
+<em class="t-gray">RubyGems가 어떻게 동작하는지와 어떻게 직접 만드는지 배우기</em>
 
 RubyGems 소프트웨어는 시스템에서 루비 소프트웨어 패키지를 쉽게 다운로드,
 설치, 관리하도록 합니다. 소프트웨어 패키지는 "gem"이라 불리고 루비
