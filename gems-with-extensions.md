@@ -1,59 +1,55 @@
 ---
 layout: default
-title: Gems with Extensions
+title: 확장기능을 포함한 gem
 url: /gems-with-extensions
 previous: /make-your-own-gem
 next: /name-your-gem
 alias: /c-extensions
 ---
 
-<em class="t-gray">Creating a gem that includes an extension that is built at install time.</em>
+<em class="t-gray">인스톨할 때 빌드되는 확장기능을 가진 gem 만들기</em>
 
-Many gems use extensions to wrap libraries that are written in C with a ruby
-wrapper.  Examples include [nokogiri](https://rubygems.org/gems/nokogiri) which
-wraps [libxml2 and libxslt](http://www.xmlsoft.org),
-[pg](https://rubygems.org/gems/pg) which is an interface to the [PostgreSQL
-database](http://www.postgresql.org) and the
-[mysql](https://rubygems.org/gems/mysql) and
-[mysql2](https://rubygems.org/gems/mysql2) gems which provide an interface to
-the [MySQL database](http://www.mysql.com).
+많은 gem이 c로 짜인 라이브러리를 루비로 래핑해서 사용합니다. 예를 들어
+[nokogiri](https://rubygems.org/gems/nokogiri)는
+[libxml2, libxslt](http://www.xmlsoft.org)을 래핑하고
+[pg](https://rubygems.org/gems/pg)는 [PostgreSQL
+데이터베이스](http://www.postgresql.org)의 인터페이스이고
+[mysql](https://rubygems.org/gems/mysql),
+[mysql2](https://rubygems.org/gems/mysql2) gem은
+[MySQL 데이터베이스](http://www.mysql.com)의 인터페이스를 제공합니다.
 
-Creating a gem that uses an extension involves several steps.  This guide will
-focus on what you should put in your gem specification to make this as easy and
-maintainable as possible.  The extension in this guide will wrap `malloc()` and
-`free()` from the C standard library.
+확장기능을 사용하는 gem을 만들려면 몇 단계를 거쳐야 합니다. 이 가이드는 가능한
+한 쉽게, 유지보수하기 좋게 하려면 무엇을 gemspec에 넣어야 하는지 설명하는 데에
+중점을 둡니다. 이 가이드에 있는 확장기능은 C 표준 라이브러리의 `malloc()`과
+`free()`를 래핑합니다.
 
-Gem layout
+Gem 레이아웃
 ----------
 
-Every gem should start with a Rakefile which contains the tasks needed by
-developers to work on the gem.  The files for the extension should go in the
-`ext/` directory in a directory matching the extension's name.  For this
-example we'll use "my_malloc" for the name.
+모든 gem은 개발자가 작업할 때 필요한 태스크가 들어 있는 Rakefile부터 만들어야
+합니다. 확장기능용 파일은 `ext/` 디렉터리 안의 확장기능 이름과 같은 디렉터리에
+들어가야 합니다. 이 예제에서는 "my_malloc"이라는 이름을 사용하겠습니다.
 
-Some extensions will be partially written in C and partially written in ruby.
-If you are going to support multiple languages, such as C and Java extensions,
-you should put the C-specific ruby files under the `ext/` directory as well in a
-`lib/` directory.
+어떤 확장기능은 어떤 곳은 C로 나머지는 루비로 구현됩니다. C, 자바 확장기능 같은
+여러 언어를 지원할 생각이라면, C-specific 루비 파일을 `ext/` 디렉터리뿐만
+아니라 `lib/` 디렉터리에도 넣으셔야 합니다.
 
     Rakefile
     ext/my_malloc/extconf.rb               # extension configuration
     ext/my_malloc/my_malloc.c              # extension source
     lib/my_malloc.rb                       # generic features
 
-When the extension is built the files in `ext/my_malloc/lib/` will be installed
-into the `lib/` directory for you.
+확장기능이 `ext/my_malloc/lib/`안에 파일을 만들면 `lib/` 디렉터리에 인스톨됩니다.
 
 extconf.rb
 ----------
 
-The extconf.rb configures a Makefile that will build your extension based.  The
-extconf.rb must check for the necessary functions, macros and shared libraries
-your extension depends upon.  The extconf.rb must exit with an error if any of
-these are missing.
+extconf.rb는 확장기능을 빌드할 Makefile을 설정합니다. extconf.rb는 확장기능에서
+필요한 기능, 매크로, 공유 라이브러리를 체크해야 합니다. 이 중 빠진 것이 있으면
+extconf.rb는 에러와 함께 종료되어야 합니다.
 
-Here is an extconf.rb that checks for `malloc()` and `free()` and creates a
-Makefile that will install the built extension at `lib/my_malloc/my_malloc.so`:
+이 extconf.rb는 `malloc()`, `free()`와 확장기능을
+`lib/my_malloc/my_malloc.so`에 설치 할 Makefile을 체크합니다.
 
     require "mkmf"
 
@@ -62,100 +58,94 @@ Makefile that will install the built extension at `lib/my_malloc/my_malloc.so`:
 
     create_makefile "my_malloc/my_malloc"
 
-See the [mkmf documentation][mkmf.rb] and [README.EXT][README.EXT] for further
-information about creating an extconf.rb and for documentation on these
-methods.
+extconf.rb의 작성과 메서드들의 더 자세한 정보는 [mkmf 문서][mkmf.rb]와
+[README.EXT][README.EXT]를 살펴보세요.
 
-C Extension
+C 확장기능
 -----------
 
-The C extension that wraps `malloc()` and `free()` goes in
-`ext/my_malloc/my_malloc.c`.  Here's the listing:
+`malloc()`, `free()`를 래핑하는 C 확장기능은 `ext/my_malloc/my_malloc.c`에
+넣습니다. 이런 내용입니다.
 
     #include <ruby.h>
 
     struct my_malloc {
-  size_t size;
-  void *ptr;
+      size_t size;
+      void *ptr;
     };
 
-    static void
-    my_malloc_free(void *p) {
-  struct my_malloc *ptr = p;
+    static void my_malloc_free(void *p) {
+      struct my_malloc *ptr = p;
 
-  if (ptr->size > 0)
-      free(ptr->ptr);
+      if (ptr->size > 0)
+        free(ptr->ptr);
     }
 
-    static VALUE
-    my_malloc_alloc(VALUE klass) {
-  VALUE obj;
-  struct my_malloc *ptr;
+    static VALUE my_malloc_alloc(VALUE klass) {
+      VALUE obj;
+      struct my_malloc *ptr;
 
-  obj = Data_Make_Struct(klass, struct my_malloc, NULL, my_malloc_free, ptr);
+      obj = Data_Make_Struct(klass, struct my_malloc, NULL, my_malloc_free, ptr);
 
-  ptr->size = 0;
-  ptr->ptr  = NULL;
+      ptr->size = 0;
+      ptr->ptr  = NULL;
 
-  return obj;
+      return obj;
     }
 
-    static VALUE
-    my_malloc_init(VALUE self, VALUE size) {
-  struct my_malloc *ptr;
-  size_t requested = NUM2SIZET(size);
+    static VALUE my_malloc_init(VALUE self, VALUE size) {
+      struct my_malloc *ptr;
+      size_t requested = NUM2SIZET(size);
 
-  if (0 == requested)
-      rb_raise(rb_eArgError, "unable to allocate 0 bytes");
+      if (0 == requested)
+        rb_raise(rb_eArgError, "unable to allocate 0 bytes");
 
-  Data_Get_Struct(self, struct my_malloc, ptr);
+      Data_Get_Struct(self, struct my_malloc, ptr);
 
-  ptr->ptr = malloc(requested);
+      ptr->ptr = malloc(requested);
 
-  if (NULL == ptr->ptr)
-      rb_raise(rb_eNoMemError, "unable to allocate %ld bytes", requested);
+      if (NULL == ptr->ptr)
+        rb_raise(rb_eNoMemError, "unable to allocate %ld bytes", requested);
 
-  ptr->size = requested;
+      ptr->size = requested;
 
-  return self;
-    }
-
-    static VALUE
-    my_malloc_release(VALUE self) {
-  struct my_malloc *ptr;
-
-  Data_Get_Struct(self, struct my_malloc, ptr);
-
-  if (0 == ptr->size)
       return self;
-
-  ptr->size = 0;
-  free(ptr->ptr);
-
-  return self;
     }
 
-    void
-    Init_my_malloc(void) {
-  VALUE cMyMalloc;
+    static VALUE my_malloc_release(VALUE self) {
+      struct my_malloc *ptr;
 
-  cMyMalloc = rb_const_get(rb_cObject, rb_intern("MyMalloc"));
+      Data_Get_Struct(self, struct my_malloc, ptr);
 
-  rb_define_alloc_func(cMyMalloc, my_malloc_alloc);
-  rb_define_method(cMyMalloc, "initialize", my_malloc_init, 1);
-  rb_define_method(cMyMalloc, "free", my_malloc_release, 0);
+      if (0 == ptr->size)
+        return self;
+
+      ptr->size = 0;
+      free(ptr->ptr);
+
+      return self;
     }
 
-This extension is simple with just a few parts:
+    void Init_my_malloc(void) {
+      VALUE cMyMalloc;
 
-* `struct my_malloc` to hold the allocated memory
-* `my_malloc_free()` to free the allocated memory after garbage collection
-* `my_malloc_alloc()` to create the ruby wrapper object
-* `my_malloc_init()` to allocate memory from ruby
-* `my_malloc_release()` to free memory from ruby
-* `Init_my_malloc()` to register the functions in the `MyMalloc` class.
+      cMyMalloc = rb_const_get(rb_cObject, rb_intern("MyMalloc"));
 
-You can test building the extension as follows:
+      rb_define_alloc_func(cMyMalloc, my_malloc_alloc);
+      rb_define_method(cMyMalloc, "initialize", my_malloc_init, 1);
+      rb_define_method(cMyMalloc, "free", my_malloc_release, 0);
+    }
+
+이 확장기능은 간단한 몇가지 기능만 있습니다.
+
+* `struct my_malloc` 는 할당된 메모리를 유지합니다.
+* `my_malloc_free()` 는 가비지 콜렉션 이후 할당된 메모리를 해제합니다.
+* `my_malloc_alloc()` 는 루비 래퍼 객체를 생성합니다.
+* `my_malloc_init()` 는 루비에서 메모리를 할당합니다.
+* `my_malloc_release()` 는 루비에서 메모리를 해제합니다.
+* `Init_my_malloc()` 는 `MyMalloc`클래스에 함수를 등록합니다.
+
+확장기능의 빌드는 이렇게 테스트 할 수 있습니다.
 
     $ cd ext/my_malloc
     $ ruby extconf.rb
@@ -169,16 +159,16 @@ You can test building the extension as follows:
     $ ruby -Ilib:ext -r my_malloc -e "p MyMalloc.new(5).free"
     #<MyMalloc:0x007fed838addb0>
 
-But this will get tedious after a while.  Let's automate it!
+음.. 따분한 일이네요. 자동화합시다!
 
 rake-compiler
 -------------
 
-[rake-compiler][rake-compiler] is a set of rake
-tasks for automating extension building.  rake-compiler can be used with C or
-Java extensions in the same project (nokogiri uses it this way).
+[rake-compiler][rake-compiler]는 확장기능 빌드를 자동화하기 위한 rake 태스크의
+모음입니다. rake-compiler는 같은 프로젝트 안의 C나 자바 확장기능과 함께
+사용할 수 있습니다. (nokogiri가 이런 식으로 씁니다.)
 
-Adding rake-compiler is very simple:
+rake-compiler는 쉽게 넣을 수 있습니다.
 
     require "rake/extensiontask"
 
@@ -186,14 +176,14 @@ Adding rake-compiler is very simple:
       ext.lib_dir = "lib/my_malloc"
     end
 
-Now you can build the extension with `rake compile` and hook the compile task
-into other tasks (such as tests).
+이제 `rake compile`으로 확장기능을 빌드할 수 있습니다. 다른 태스크(테스트 같은)
+사이에 컴파일 태스크를 넣을 수 있습니다.
 
-Setting `lib_dir` places the shared library in `lib/my_malloc/my_malloc.so` (or
-`.bundle` or `.dll`).  This allows the top-level file for the gem to be a ruby
-file.  This allows you to write the parts that are best suited to ruby in ruby.
+`lib_dir` 설정은 `lib/my_malloc/my_malloc.so`(나 `.bundle`이나 `.dll`)에 공유
+라이브러리를 넣습니다. 이렇게하면, gem을 위한 최상위 파일은 루비파일이 되고,
+루비 파일에서 루비에 맞도록 최적화된 코드를 짤 수 있습니다.
 
-For example:
+예를 들어:
 
     class MyMalloc
 
@@ -203,16 +193,15 @@ For example:
 
     require "my_malloc/my_malloc"
 
-Setting the `lib_dir` also allows you to build a gem that contains pre-built
-extensions for multiple versions of ruby.  (An extension for Ruby 1.9.3 cannot
-be used with an extension for Ruby 2.0.0).  `lib/my_malloc.rb` can pick the
-correct shared library to install.
+`lib_dir` 설정으로 여러 버전의 루비를 위한 확장기능을 미리 빌드한 gem을 빌드할
+수도 있습니다. (루비 1.9.3 확장기능은 루비 2.0.0의 확장기능과 같이 사용할 수
+없습니다.) `lib/my_malloc.rb`은 인스톨할 때 맞는 공유 라이브러리를 고를 수
+있습니다.
 
-Gem specification
+Gemspec
 -----------------
 
-The final step to building the gem is adding the extconf.rb to the extensions
-list in the gemspec:
+gem을 만들기 위한 마지막 단계는 gemspec의 확장기능 목록에 extconf.rb 추가입니다.
 
     Gem::Specification.new "my_malloc", "1.0" do |s|
       # [...]
@@ -220,46 +209,41 @@ list in the gemspec:
       s.extensions = %w[ext/my_malloc/extconf.rb]
     end
 
-Now you can build and release the gem!
+이제 gem을 빌드하고 배포할 수 있습니다!
 
-Extension Naming
+확장기능 이름짓기
 ----------------
 
-To avoid unintended interactions between gems, it's a good idea for each gem to
-keep all of its files in a single directory.  Here are the recommendations for
-a gem with the name `<name>`:
+gem 사이의 의도치 않은 상호작용을 피하기 위해, 각 gem은 파일을 한 디렉터리에
+넣어두면 좋습니다. `<name>`이라는 gem이 있다면 권장되는 구성은 이렇습니다.
 
-1. `ext/<name>` is the directory that contains the source files and
-   `extconf.rb`
-2. `ext/<name>/<name>.c` is the main source file (there may be others)
-3. `ext/<name>/<name>.c` contains a function `Init_<name>`.  (The name
-   following `Init_` function must exactly match the name of the extension for
-   it to be loadable by require.)
-4. `ext/<name>/extconf.rb` calls `create_makefile('<name>/<name>')` only when
-   the all the pieces needed to compile the extension are present.
-5. The gemspec sets `extensions = ['ext/<name>/extconf.rb']` and includes any
-   of the necessary extension source files in the `files` list.
-6. `lib/<name>.rb` contains `require '<name>/<name>'` which loads the C
-   extension
+1. `ext/<name>`은 `extconf.rb`, 소스 파일을 포함하는 디렉터리입니다.
+2. `ext/<name>/<name>.c`은 메인 소스 파일(다른 파일도 있겠죠?)입니다.
+3. `ext/<name>/<name>.c`은 `Init_<name>` 함수를 포함합니다. (require로 불러오려면
+   `Init_` 함수 뒤의 이름은 확장기능의 이름과 정확히 같아야 합니다.
+4. `ext/<name>/extconf.rb`는 확장기능을 컴파일하는 데 필요한 모든 요소가
+   존재하는 경우에만 `create_makefile('<name>/<name>')`를 호출합니다.
+5. gemspec에 `extensions = ['ext/<name>/extconf.rb']`과 필요한 확장기능의 소스
+   파일을 전부 `files` 목록에 추가합니다.
+6. `lib/<name>.rb` C 확장기능을 로드할 `require '<name>/<name>'`를 포함합니다.
 
-Further Reading
+더 읽을거리
 ---------------
 
-* [my_malloc](https://github.com/rubygems/guides/tree/my_malloc) contains the
-  source for this extension with some additional comments.
-* [README.EXT][README.EXT] describes in greater detail how to build extensions
-  in ruby
-* [MakeMakefile][mkmf.rb] contains documentation for mkmf.rb, the library
-  extconf.rb uses to detect ruby and C library features
-* [rake-compiler][rake-compiler] integrates building C and Java extensions into
-  your Rakefile in a smooth manner.
-* [Writing C extensions part
-  1](http://tenderlovemaking.com/2009/12/18/writing-ruby-c-extensions-part-1.html)
-  and [part 2](http://tenderlovemaking.com/2010/12/11/writing-ruby-c-extensions-part-2.html))
-  by Aaron Patterson
-* Interfaces to C libraries can be written using ruby and
-  [fiddle](http://ruby-doc.org/stdlib-2.0/libdoc/fiddle/rdoc/Fiddle.html) (part
-  of the standard library) or [ruby-ffi](https://github.com/ffi/ffi)
+* [my_malloc](https://github.com/rubygems/guides/tree/my_malloc)는 이 확장
+  기능의 소스에 주석을 조금 덧붙여 놓았습니다.
+* [README.EXT][README.EXT]는 훨씬 더 자세하게 어떻게 루비에서 확장기능을
+  빌드하는지 설명합니다.
+* [MakeMakefile][mkmf.rb]에는 mkmf.rb의 문서가 있습니다.  mkmf.rb는 extconf.rb
+  라이브러리에서 루비와 C 라이브러리 기능을 찾는데 사용합니다.
+* [rake-compiler][rake-compiler]는 C와 자바 확장기능의 빌드를 자연스럽게 
+  Rakefile에 넣습니다.
+* Aaron Patterson님의 [C 확장기능 파트
+  1](http://tenderlovemaking.com/2009/12/18/writing-ruby-c-extensions-part-1.html),
+  [파트 2](http://tenderlovemaking.com/2010/12/11/writing-ruby-c-extensions-part-2.html)
+* C 라이브러리의 인터페이스는 루비를 사용해 작성할 수 있습니다.
+  [fiddle](http://ruby-doc.org/stdlib-2.0/libdoc/fiddle/rdoc/Fiddle.html)(표준
+  라이브러리에 포함), [ruby-ffi](https://github.com/ffi/ffi)를 참조하세요.
 
 [README.EXT]: https://github.com/ruby/ruby/blob/trunk/README.EXT
 [mkmf.rb]: http://ruby-doc.org/stdlib-2.0/libdoc/mkmf/rdoc/MakeMakefile.html
