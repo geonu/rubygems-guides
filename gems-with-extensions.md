@@ -27,19 +27,19 @@ Gem 레이아웃
 ----------
 
 모든 gem은 개발자가 작업할 때 필요한 작업이 들어 있는 Rakefile부터 만들어야
-합니다. 확장기능용 파일은 `ext/` 디렉토리 안의 확장기능 이름과 같은 디렉토리에
+합니다. 확장기능용 파일은 `ext/` 디렉터리 안의 확장기능 이름과 같은 디렉터리에
 들어가야 합니다. 이 예제에서는 "my_malloc"이라는 이름을 사용하겠습니다.
 
 어떤 확장기능은 일부는 C로, 일부는 루비로 구현됩니다. C, 자바 확장기능 같은
-여러 언어를 지원할 생각이라면, C-specific 루비 파일을 `ext/` 디렉토리뿐만
-아니라 `lib/` 디렉토리에도 넣으셔야 합니다.
+여러 언어를 지원할 생각이라면, C-specific 루비 파일을 `ext/` 디렉터리뿐만
+아니라 `lib/` 디렉터리에도 넣으셔야 합니다.
 
     Rakefile
     ext/my_malloc/extconf.rb               # extension configuration
     ext/my_malloc/my_malloc.c              # extension source
     lib/my_malloc.rb                       # generic features
 
-확장기능이 빌드될 때, `ext/my_malloc/lib/` 안의 파일이 `lib/` 디렉토리에
+확장기능이 빌드될 때, `ext/my_malloc/lib/` 안의 파일이 `lib/` 디렉터리에
 설치됩니다.
 
 extconf.rb
@@ -215,10 +215,10 @@ gem을 만들기 위해 마지막으로 gemspec의 확장기능 목록에 extcon
 확장기능 이름짓기
 ----------------
 
-gem 사이의 의도치 않은 상호작용을 피하기 위해, 각 gem의 파일을 한 디렉토리에
+gem 사이의 의도치 않은 상호작용을 피하기 위해, 각 gem의 파일을 한 디렉터리에
 넣어두면 좋습니다. `<name>`이라는 gem을 아래와 같이 구성하는 것을 권장합니다.
 
-1. `ext/<name>`은 `extconf.rb`, 소스 파일을 포함하는 디렉토리입니다.
+1. `ext/<name>`은 `extconf.rb`, 소스 파일을 포함하는 디렉터리입니다.
 2. `ext/<name>/<name>.c`는 메인 소스 파일(다른 파일도 있겠죠?)입니다.
 3. `ext/<name>/<name>.c`는 `Init_<name>` 함수를 포함합니다. (require로 불러오려면
    `Init_` 함수 뒤의 이름은 확장기능의 이름과 정확히 같아야 합니다.

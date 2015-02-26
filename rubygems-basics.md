@@ -93,7 +93,7 @@ gem을 설치할 때 `--no-doc` 인자를 이용해 문서 생성을 하지 않�
 {:#requiring-code}
 
 RubyGems는 `require`문에서 루비 코드를 찾는 루비 로드 패스를 수정합니다. gem을
-`require` 할 때, 사실은 그냥 `$LOAD_PATH`에 gem의 `lib` 디렉토리를 붙일 뿐입니다.
+`require` 할 때, 사실은 그냥 `$LOAD_PATH`에 gem의 `lib` 디렉터리를 붙일 뿐입니다.
 루비에서 `pretty_print` 라이브러리가 어떻게 인클루드되는지 이해하기 위해
 `irb`에서 한번 시험해 봅시다.
 
@@ -108,8 +108,8 @@ RubyGems는 `require`문에서 루비 코드를 찾는 루비 로드 패스를 �
      ".../lib/ruby/1.9.1",
      "."]
 
-기본적으로 로드 패스는 조금의 시스템 디렉토리와 루비 스탠다드 라이브러리만
-가지고 있습니다. 로드 패스에 awesome_print의 디렉토리를 추가하면,
+기본적으로 로드 패스는 조금의 시스템 디렉터리와 루비 스탠다드 라이브러리만
+가지고 있습니다. 로드 패스에 awesome_print의 디렉터리를 추가하면,
 awesome_print의 파일 중 하나를 require 할 수 있게 됩니다.
 
     % irb -rpp
@@ -120,7 +120,7 @@ awesome_print의 파일 중 하나를 require 할 수 있게 됩니다.
 
 주의: 루비 1.8에서는 gem을 require 하기 전에 `require 'rubygems'`을 해야합니다.
 
-한 번 `ap`를 require 하면, RubyGems는 자동으로 `$LOAD_PATH`에 `lib` 디렉토리를
+한 번 `ap`를 require 하면, RubyGems는 자동으로 `$LOAD_PATH`에 `lib` 디렉터리를
 붙입니다.
 
 기본적으로 gem 안에 있는 것은 이것뿐입니다. 루비 코드를 `lib`에 넣고
@@ -128,8 +128,8 @@ awesome_print의 파일 중 하나를 require 할 수 있게 됩니다.
 `freewill.rb`이 되어야 합니다, [gem 이름짓기]({{ site.baseurl }}/name-your-gem)
 도 보세요.) RubyGems에서 로드됩니다.
 
-`lib` 디렉토리 자체는 보통 하나의 `.rb` 파일과 다른 모든 파일을 가지고 있는
-같은 이름의 디렉토리를 가지고 있습니다.
+`lib` 디렉터리 자체는 보통 하나의 `.rb` 파일과 다른 모든 파일을 가지고 있는
+같은 이름의 디렉터리를 가지고 있습니다.
 
 예를 들어:
 
