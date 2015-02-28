@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Command Reference
+title: 명령어 레퍼런스
 url: /command-reference
 previous: /patterns
 next: /rubygems-org-api
 ---
 
-<em class="t-gray">What each `gem` command does, and how to use it.</em>
+<em class="t-gray">`gem` 명령어들이 각각 무엇을 하고, 어떻게 사용하는가</em>
 
-This reference was automatically generated from RubyGems version 2.4.2.
+이 레퍼런스는 RubyGems 2.4.5 버전에서 자동 생성 되었습니다.
 
 * [gem build](#gem-build)
 * [gem cert](#gem-cert)
@@ -48,7 +48,7 @@ This reference was automatically generated from RubyGems version 2.4.2.
 
 Build a gem from a gemspec
 
-### Usage
+### 사용법
 
     gem build GEMSPEC_FILE [options]
 
@@ -68,7 +68,7 @@ Build a gem from a gemspec
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMSPEC_FILE* -   gemspec file name to build a gem for
@@ -76,7 +76,7 @@ Build a gem from a gemspec
   
 
   
-### Description
+### 설명
 
 The build command allows you to create a gem from a ruby gemspec.
 
@@ -98,7 +98,7 @@ with gem spec:
 
 Manage RubyGems certificates and signing settings
 
-### Usage
+### 사용법
 
     gem cert [options]
 
@@ -126,7 +126,7 @@ Manage RubyGems certificates and signing settings
   
 
   
-### Description
+### 설명
 
 The cert command manages signing keys and certificates for creating signed
 gems.  Your signing certificate and private key are typically stored in
@@ -168,7 +168,7 @@ For further reading on signing gems see `ri Gem::Security`.
 
 Check a gem repository for added or missing files
 
-### Usage
+### 사용법
 
     gem check [OPTIONS] [GEMNAME ...] [options]
 
@@ -192,7 +192,7 @@ Check a gem repository for added or missing files
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to check
@@ -200,7 +200,7 @@ Check a gem repository for added or missing files
   
 
   
-### Description
+### 설명
 
 The check command can list and repair problems with installed gems and
 specifications and will clean up gems that have been partially uninstalled.
@@ -210,7 +210,7 @@ specifications and will clean up gems that have been partially uninstalled.
 
 Clean up old versions of installed gems
 
-### Usage
+### 사용법
 
     gem cleanup [GEMNAME ...] [options]
 
@@ -230,7 +230,7 @@ Clean up old versions of installed gems
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to cleanup
@@ -238,7 +238,7 @@ Clean up old versions of installed gems
   
 
   
-### Description
+### 설명
 
 The cleanup command removes old versions of gems from GEM_HOME that are not
 required to meet a dependency.  If a gem is installed elsewhere in GEM_PATH
@@ -251,7 +251,7 @@ If no gems are named all gems in GEM_HOME are cleaned.
 
 Display the contents of the installed gems
 
-### Usage
+### 사용법
 
     gem contents GEMNAME [GEMNAME ...] [options]
 
@@ -276,7 +276,7 @@ Display the contents of the installed gems
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to list contents for
@@ -284,7 +284,7 @@ Display the contents of the installed gems
   
 
   
-### Description
+### 설명
 
 The contents command lists the files in an installed gem.  The listing can
 be given as full file names, file names without the installed directory
@@ -295,7 +295,7 @@ prefix or only the files that are requireable.
 
 Show the dependencies of an installed gem
 
-### Usage
+### 사용법
 
     gem dependency REGEXP [options]
 
@@ -333,7 +333,7 @@ Show the dependencies of an installed gem
 
 
   
-### Arguments
+### 인자
 
 
 * *REGEXP* -         show dependencies for gems whose names start with REGEXP
@@ -341,7 +341,7 @@ Show the dependencies of an installed gem
   
 
   
-### Description
+### 설명
 
 The dependency commands lists which other gems a given gem depends on.  For
 local gems only the reverse dependencies can be shown (which gems depend on
@@ -355,7 +355,7 @@ use with other commands.
 
 Display information about the RubyGems environment
 
-### Usage
+### 사용법
 
     gem environment [arg] [options]
 
@@ -371,7 +371,7 @@ Display information about the RubyGems environment
 
 
   
-### Arguments
+### 인자
 
 
 * *packageversion* -   display the package version
@@ -385,7 +385,7 @@ Display information about the RubyGems environment
   
 
   
-### Description
+### 설명
 
 The environment command lets you query rubygems for its configuration for
 use in shell scripts or as a debugging aid.
@@ -435,7 +435,7 @@ lib/rubygems/defaults/operating_system.rb
 
 Download a gem and place it in the current directory
 
-### Usage
+### 사용법
 
     gem fetch GEMNAME [GEMNAME ...] [options]
 
@@ -464,7 +464,7 @@ Download a gem and place it in the current directory
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to download
@@ -472,7 +472,7 @@ Download a gem and place it in the current directory
   
 
   
-### Description
+### 설명
 
 The fetch command fetches gem files that can be stored for later use or
 unpacked to examine their contents.
@@ -485,7 +485,7 @@ then repackaging it.
 
 Generates the index files for a gem server directory
 
-### Usage
+### 사용법
 
     gem generate_index [options]
 
@@ -509,7 +509,7 @@ Generates the index files for a gem server directory
   
 
   
-### Description
+### 설명
 
 The generate_index command creates a set of indexes for serving gems
 statically.  The command expects a 'gems' directory under the path given to
@@ -538,7 +538,7 @@ Marshal::MINOR_VERSION constants.  It is used to ensure compatibility.
 
 Provide help on the 'gem' command
 
-### Usage
+### 사용법
 
     gem help ARGUMENT [options]
 
@@ -561,7 +561,7 @@ Provide help on the 'gem' command
 
 Install a gem into the local repository
 
-### Usage
+### 사용법
 
     gem install GEMNAME [GEMNAME ...] [options] -- --build-flags [options]
 
@@ -625,7 +625,7 @@ Install a gem into the local repository
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to install
@@ -633,7 +633,7 @@ Install a gem into the local repository
   
 
   
-### Description
+### 설명
 
 The install command installs local or remote gem into a gem repository.
 
@@ -707,7 +707,7 @@ to write the specification by hand.  For example:
 
 Display local gems whose name matches REGEXP
 
-### Usage
+### 사용법
 
     gem list [STRING ...] [options]
 
@@ -747,7 +747,7 @@ Display local gems whose name matches REGEXP
 
 
   
-### Arguments
+### 인자
 
 
 * *REGEXP* -         regexp to look for in gem name
@@ -755,7 +755,7 @@ Display local gems whose name matches REGEXP
   
 
   
-### Description
+### 설명
 
 The list command is used to view the gems you have installed locally.
 
@@ -769,7 +769,7 @@ To search for remote gems use the search command.
 
 Generate a lockdown list of gems
 
-### Usage
+### 사용법
 
     gem lock GEMNAME-VERSION [GEMNAME-VERSION ...] [options]
 
@@ -789,7 +789,7 @@ Generate a lockdown list of gems
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to lock
@@ -798,7 +798,7 @@ Generate a lockdown list of gems
   
 
   
-### Description
+### 설명
 
 The lock command will generate a list of +gem+ statements that will lock down
 the versions for the gem given in the command line.  It will specify exact
@@ -834,7 +834,7 @@ lock it down to the exact version.
 
 Mirror all gem files (requires rubygems-mirror)
 
-### Usage
+### 사용법
 
     gem mirror [options]
 
@@ -852,7 +852,7 @@ Mirror all gem files (requires rubygems-mirror)
   
 
   
-### Description
+### 설명
 
 The mirror command has been moved to the rubygems-mirror gem.
   
@@ -861,7 +861,7 @@ The mirror command has been moved to the rubygems-mirror gem.
 
 Open gem sources in editor
 
-### Usage
+### 사용법
 
     gem open GEMNAME [-e EDITOR] [options]
 
@@ -881,7 +881,7 @@ Open gem sources in editor
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -      name of gem to open in editor
@@ -889,7 +889,7 @@ Open gem sources in editor
   
 
   
-### Description
+### 설명
 
           The open command opens gem in editor and changes current path
           to gem's source directory. Editor can be specified with -e option,
@@ -901,7 +901,7 @@ Open gem sources in editor
 
 Display all gems that need updates
 
-### Usage
+### 사용법
 
     gem outdated [options]
 
@@ -937,7 +937,7 @@ Display all gems that need updates
   
 
   
-### Description
+### 설명
 
 The outdated command lists gems you may wish to upgrade to a newer version.
 
@@ -949,7 +949,7 @@ update the gems with the update or install commands.
 
 Manage gem owners of a gem on the push server
 
-### Usage
+### 사용법
 
     gem owner GEM [options]
 
@@ -976,7 +976,7 @@ Manage gem owners of a gem on the push server
 
 
   
-### Arguments
+### 인자
 
 
 * *GEM* -        gem to manage owners for
@@ -984,7 +984,7 @@ Manage gem owners of a gem on the push server
   
 
   
-### Description
+### 설명
 
 The owner command lets you add and remove owners of a gem on a push
 server (the default is https://rubygems.org).
@@ -998,7 +998,7 @@ permission to.
 
 Restores installed gems to pristine condition from files located in the gem cache
 
-### Usage
+### 사용법
 
     gem pristine [GEMNAME ...] [options]
 
@@ -1006,6 +1006,7 @@ Restores installed gems to pristine condition from files located in the gem cach
 ###   Options:
 
 *         -&#8203;-all                      - Restore all installed gems to pristine condition
+*         -&#8203;-skip=gem_name            - used on -&#8203;-all, skip if name == gem_name
 *         -&#8203;-\[no-\]extensions          - Restore gems with extensions in addition to regular gems
 *         -&#8203;-only-executables         - Only restore executables
 *     -E, -&#8203;-\[no-\]env-shebang         - Rewrite executables with a shebang of /usr/bin/env
@@ -1022,7 +1023,7 @@ Restores installed gems to pristine condition from files located in the gem cach
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        gem to restore to pristine condition (unless --all)
@@ -1030,7 +1031,7 @@ Restores installed gems to pristine condition from files located in the gem cach
   
 
   
-### Description
+### 설명
 
 The pristine command compares an installed gem with the contents of its
 cached .gem file and restores any files that don't match the cached .gem's
@@ -1053,7 +1054,7 @@ extensions will be restored.
 
 Push a gem up to the gem server
 
-### Usage
+### 사용법
 
     gem push GEM [options]
 
@@ -1078,7 +1079,7 @@ Push a gem up to the gem server
 
 
   
-### Arguments
+### 인자
 
 
 * *GEM* -        built gem to push up
@@ -1086,7 +1087,7 @@ Push a gem up to the gem server
   
 
   
-### Description
+### 설명
 
 The push command uploads a gem to the push server (the default is
 https://rubygems.org) and adds it to the index.
@@ -1099,7 +1100,7 @@ command.  For further discussion see the help for the yank command.
 
 Query gem information in local or remote repositories
 
-### Usage
+### 사용법
 
     gem query [options]
 
@@ -1142,7 +1143,7 @@ Query gem information in local or remote repositories
   
 
   
-### Description
+### 설명
 
 The query command is the basis for the list and search commands.
 
@@ -1154,7 +1155,7 @@ is too hard to use.
 
 Generates RDoc for pre-installed gems
 
-### Usage
+### 사용법
 
     gem rdoc [args] [options]
 
@@ -1178,7 +1179,7 @@ Generates RDoc for pre-installed gems
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        gem to generate documentation for (unless --all)
@@ -1186,7 +1187,7 @@ Generates RDoc for pre-installed gems
   
 
   
-### Description
+### 설명
 
 The rdoc command builds documentation for installed gems.  By default
 only documentation is built using rdoc, but additional types of
@@ -1200,7 +1201,7 @@ Use --overwrite to force rebuilding of documentation.
 
 Display remote gems whose name matches REGEXP
 
-### Usage
+### 사용법
 
     gem search [REGEXP] [options]
 
@@ -1240,7 +1241,7 @@ Display remote gems whose name matches REGEXP
 
 
   
-### Arguments
+### 인자
 
 
 * *REGEXP* -         regexp to search for in gem name
@@ -1248,7 +1249,7 @@ Display remote gems whose name matches REGEXP
   
 
   
-### Description
+### 설명
 
 The search command displays remote gems whose name matches the given
 regexp.
@@ -1264,7 +1265,7 @@ To list local gems use the list command.
 
 Documentation and gem repository HTTP server
 
-### Usage
+### 사용법
 
     gem server [options]
 
@@ -1290,7 +1291,7 @@ Documentation and gem repository HTTP server
   
 
   
-### Description
+### 설명
 
 The server command starts up a web server that hosts the RDoc for your
 installed gems and can operate as a server for installation of gems on other
@@ -1312,7 +1313,7 @@ You can set up a shortcut to gem server documentation using the URL:
 
 Manage the sources and cache file RubyGems uses to search for gems
 
-### Usage
+### 사용법
 
     gem sources [options]
 
@@ -1342,7 +1343,7 @@ Manage the sources and cache file RubyGems uses to search for gems
   
 
   
-### Description
+### 설명
 
 RubyGems fetches gems from the sources you have configured (stored in your
 ~/.gemrc).
@@ -1391,7 +1392,7 @@ To remove a source use the --remove argument:
 
 Display gem specification (in yaml)
 
-### Usage
+### 사용법
 
     gem specification [GEMFILE] [FIELD] [options]
 
@@ -1431,7 +1432,7 @@ Display gem specification (in yaml)
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMFILE* -        name of gem to show the gemspec for
@@ -1440,7 +1441,7 @@ Display gem specification (in yaml)
   
 
   
-### Description
+### 설명
 
 The specification command allows you to extract the specification from
 a gem for examination.
@@ -1458,7 +1459,7 @@ Specific fields in the specification can be extracted in YAML format:
 
 List gems along with access times
 
-### Usage
+### 사용법
 
     gem stale [options]
 
@@ -1476,7 +1477,7 @@ List gems along with access times
   
 
   
-### Description
+### 설명
 
 The stale command lists the latest access time for all the files in your
 installed gems.
@@ -1489,7 +1490,7 @@ longer using.
 
 Uninstall gems from the local repository
 
-### Usage
+### 사용법
 
     gem uninstall GEMNAME [GEMNAME ...] [options]
 
@@ -1521,7 +1522,7 @@ Uninstall gems from the local repository
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to uninstall
@@ -1529,7 +1530,7 @@ Uninstall gems from the local repository
   
 
   
-### Description
+### 설명
 
 The uninstall command removes a previously installed gem.
 
@@ -1542,7 +1543,7 @@ that is a dependency of an existing gem.  You can use the
 
 Unpack an installed gem to the current directory
 
-### Usage
+### 사용법
 
     gem unpack GEMNAME [options]
 
@@ -1564,7 +1565,7 @@ Unpack an installed gem to the current directory
 
 
   
-### Arguments
+### 인자
 
 
 * *GEMNAME* -        name of gem to unpack
@@ -1572,7 +1573,7 @@ Unpack an installed gem to the current directory
   
 
   
-### Description
+### 설명
 
 The unpack command allows you to examine the contents of a gem or modify
 them to help diagnose a bug.
@@ -1593,7 +1594,7 @@ command help for an example.
 
 Update installed gems to the latest version
 
-### Usage
+### 사용법
 
     gem update REGEXP [REGEXP ...] [options]
 
@@ -1651,7 +1652,7 @@ Update installed gems to the latest version
 
 
   
-### Arguments
+### 인자
 
 
 * *REGEXP* -         regexp to search for in gem name
@@ -1659,7 +1660,7 @@ Update installed gems to the latest version
   
 
   
-### Description
+### 설명
 
 The update command will update your gems to the latest version.
 
@@ -1671,7 +1672,7 @@ command to remove old versions.
 
 Find the location of a library file you can require
 
-### Usage
+### 사용법
 
     gem which FILE [FILE ...] [options]
 
@@ -1692,7 +1693,7 @@ Find the location of a library file you can require
 
 
   
-### Arguments
+### 인자
 
 
 * *FILE* -           name of file to find
@@ -1700,7 +1701,7 @@ Find the location of a library file you can require
   
 
   
-### Description
+### 설명
 
 The which command is like the shell which command and shows you where
 the file you wish to require lives.
@@ -1714,7 +1715,7 @@ requiring to see why it does not behave as you expect.
 
 Remove a pushed gem from the index
 
-### Usage
+### 사용법
 
     gem yank GEM -v VERSION [-p PLATFORM] [--undo] [--key KEY_NAME] [options]
 
@@ -1737,7 +1738,7 @@ Remove a pushed gem from the index
 
 
   
-### Arguments
+### 인자
 
 
 * *GEM* -        name of gem
@@ -1745,7 +1746,7 @@ Remove a pushed gem from the index
   
 
   
-### Description
+### 설명
 
 The yank command removes a gem you pushed to a server from the server's
 index.
