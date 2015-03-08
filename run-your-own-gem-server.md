@@ -1,59 +1,57 @@
 ---
 layout: default
-title: Run your own gem server
+title: gem 서버 운영하기
 url: /run-your-own-gem-server
 previous: /rubygems-org-api
 next: /resources
 ---
 
-<em class="t-gray">Need to serve gems locally or for your organization?</em>
+<em class="t-gray">사설, 조직을 위해 gem을 제공해야 할 때</em>
 
-There are times you would like to run your own gem server.  You may want to
-share gems with colleagues when you are both without internet connectivity. You
-may have private code, internal to your organization, that you'd like to
-distribute and manage as gems without making the source publicly available.
+스스로 gem 서버를 실행하고 싶을 때가 있습니다. 인터넷이 연결되지 않았을 때
+동료에게 gem을 공유하고 싶을 수도 있죠. 조직 내부에서만 사용하는, 공개하지 않은
+채 gem으로 배포, 관리하고 싶은 개인적인 코드가 있을 수도 있습니다.
 
-There are a few options to set up a server to host gems from within your
-organization. This guide covers the `gem server` command and the [Gem in a
-Box](https://github.com/geminabox/geminabox) project. It also discusses how to
-use these servers as gem sources during development.
+조직 안에서 gem을 호스팅하기 위한 서버를 설정하는 몇 가지 방법이 있습니다. 이
+가이드에서는 `gem server` 명령어와 [Gem in a
+Box](https://github.com/geminabox/geminabox) 프로젝트를 설명하려 합니다. 개발할
+때 이런 서버를 gem 소스로 사용하는 방법도 다룹니다.
 
-## Running the built-in gem server
+## 내장 gem 서버 운영하기
 
-When you install RubyGems, it adds the `gem server` command to your system.
-This is the fastest way to start hosting gems. Just run the command:
+RubyGems을 설치할 때, 시스템에 `gem server` 명령어도 추가됩니다.
+이는 gem의 호스팅을 하는 가장 빠른 방법입니다. 그냥 명령어를 실행하세요.
 
     gem server
 
-This will serve all your installed gems from your local machine at
-[http://localhost:8808](http://localhost:8808). If you visit this url in your
-browser, you'll find that the `gem server` command provides an HTML
-documentation index.
+이는 모든 로컬 머신에 설치된 모든 gem을
+[http://localhost:8808](http://localhost:8808)에서 제공합니다. 브라우저에서 이
+url을 방문하면 `gem server` 명령어가 제공하는 HTML 문서 인덱스를 보실 수
+있습니다.
 
-When you install new gems, they are automatically available through the
-built-in gem server.
+새로운 gem을 설치하면, 자동으로 내장 gem 서버에서도 사용 가능하게 됩니다.
 
-For a complete list of options, run:
+쓸 수 있는 옵션을 모두 보시려면 이 명령을 실행하세요.
 
     gem server --help
 
-Among other options, you can change the port that gems are served on and
-specify the directories to search for installed gems.
+다른 옵션 중에는, gem을 제공할 port 변경과 설치된 gem을 검색할 디렉터리 지정
+등이 있습니다.
 
-## Running Gem in a Box
+## Gem in a Box 실행하기
 
-For a server with more features, including the ability to push gems, try out
-the [Gem in a Box](https://github.com/geminabox/geminabox) project.
+서버에 gem을 넣는 기능을 포함해 더 많은 것을 원한다면, [Gem in a
+Box](https://github.com/geminabox/geminabox) 프로젝트를 시험해 보세요.
 
-To get started, install `geminabox`:
+시작하려면 `geminabox`를 설치합니다.
 
     [~/dev/geminabox] gem install geminabox
 
-Make a data directory for storing gems:
+gem을 저장하기 위한 data 디렉터리를 만듭니다.
 
     [~/dev/geminabox] mkdir data
 
-Include the following in a `config.ru` file:
+밑의 내용을 `config.ru` 파일에 넣습니다.
 
     [~/dev/geminabox] cat config.ru
     require "rubygems"
@@ -62,15 +60,15 @@ Include the following in a `config.ru` file:
     Geminabox.data = "./data"
     run Geminabox::Server
 
-And run the server:
+서버를 실행합니다.
 
     [~/dev/geminabox] rackup
     [2011-05-19 12:09:40] INFO  WEBrick 1.3.1
     [2011-05-19 12:09:40] INFO  ruby 1.9.2 (2011-02-18) [x86_64-darwin10.5.0]
     [2011-05-19 12:09:40] INFO  WEBrick::HTTPServer#start: pid=60941 port=9292
 
-Now you can push gems using the `gem inabox` command.  The first time you do
-this, you'll be prompted for the location of your gem server.
+이제 `gem inabox` 명령어를 사용해 gem을 넣을 수 있습니다. 이걸 처음 할 때, gem
+서버의 위치를 묻는 메시지가 표시됩니다.
 
     [~/dev/secretgem] gem build secretgem.gemspec
       Successfully built RubyGem
@@ -82,30 +80,29 @@ this, you'll be prompted for the location of your gem server.
     Host:  http://localhost:9292
     Pushing secretgem-0.0.1.gem to http://localhost:9292/...
 
-There is a web interface available on
-[http://localhost:9292](http://localhost:9292) as well.  For more information,
-read the [Gem in a box](https://github.com/geminabox/geminabox) README.
+[http://localhost:9292](http://localhost:9292)에 표시되는 웹 인터페이스도
+있습니다. 더 자세한 정보는 [Gem in a
+box](https://github.com/geminabox/geminabox)의 README를 읽으세요.
 
-## Using gems from your server
+## 서버에서 gem 사용하기
 
-Whether you use `gem server`, Gem in a Box, or another gem server, you can
-configure RubyGems to use your local or internal source alongside other sources
-such as [http://rubygems.org](http://rubygems.org).
+`gem server`, Gem in a Box, 아니면 다른 gem 서버를 사용하면 RubyGems를
+[http://rubygems.org](http://rubygems.org) 같은 다른 소스와 함께 로컬, 내부
+소스도 사용하도록 RubyGems를 설정할 수 있습니다.
 
-Use the `gem sources` command to add the gem server to your system-wide gem
-sources.  The following URL is the default for running Gem in a Box via
-`rackup`:
+`gem sources` 명령어를 사용해 시스템 전체 gem 소스에 gem 서버를 추가할 수
+있습니다. 밑의 URL은 `rackup`을 통해 Gem in a Box를 실행 했을 때의 기본값입니다.
 
     gem sources --add http://localhost:9292
 
-Then install gems as usual:
+그리고 평소처럼 gem을 설치합니다.
 
     [~] gem install secretgem
     Successfully installed secretgem-0.0.1
     1 gem installed
 
-If you're using [Bundler](http://bundler.io) then you can specify this
-server as a gem source in your `Gemfile`:
+[Bundler](http://bundler.io)를 사용한다면, `Gemfile`에 이 서버를 gem 소스로
+지정할 수 있습니다.
 
     [~/dev/myapp] cat Gemfile
     source "http://localhost:9292"
