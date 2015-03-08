@@ -3,7 +3,7 @@ layout: default
 title: 보안
 url: /security
 previous: /publishing
-next: /patterns
+next: /ssl-certificate-update
 ---
 
 <em class="t-gray">gem을 암호화된 서명을 넣어 빌드하고 설치하기와 다른 보안 이야기.</em>
