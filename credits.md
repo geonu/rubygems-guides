@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Credits
+title: 만든 사람들
 previous: /plugins
 next: /
 ---
 
-<em class="t-gray">This site is [open source](https://github.com/rubygems/guides) and its content is
-[Creative Commons](https://github.com/rubygems/guides/blob/gh-pages/CC-LICENSE)
-licensed.</em>
+<em class="t-gray">이 사이트는 [오픈 소스](https://github.com/rubygems/guides)고
+이 저작물은 [CCL](https://github.com/rubygems/guides/blob/gh-pages/CC-LICENSE)에
+따라 이용할 수 있다.</em>
 
-Contributors
+기여자
 ------------
 
-These people have donated time to creating and improving the RubyGems Guides site:
+이 분들이 RubyGems 가이드를 더 좋게 만드는데 시간을 투자해 주셨습니다.
 
 * [Gabe Berke-Williams](https://github.com/gabebw)
 * [Gregory Brown](https://github.com/sandal)
@@ -34,10 +34,22 @@ These people have donated time to creating and improving the RubyGems Guides sit
 * [Antonio Terceiro](https://github.com/terceiro)
 * [thrackle](https://github.com/thrackle)
 
-Acknowledgments
+번역
+----
+
+번역은 [오픈 소스](https://github.com/ruby-korea/rubygems-guides)로 이루어
+졌습니다. 도움을 주신 모든 분들께 감사드립니다.
+
+* [marocchino](https://github.com/marocchino)
+* [ChaYoung You](https://github.com/yous)
+* [ChangHoon, Jeong](https://github.com/seapy)
+* [Re.Shia](https://github.com/riseshia)
+* [choipd](https://github.com/choipd)
+
+감사의 말
 ---------------
 
-Material for the Guides was adapted from these sources:
+가이드의 내용은 다음 출처에서 가져왔습니다.
 
 * [Gem Packaging: Best Practices](http://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices)
 * [Gem Sawyer, Modern Day Ruby Warrior](http://rubylearning.com/blog/2010/10/06/gem-sawyer-modern-day-ruby-warrior/)
@@ -46,7 +58,7 @@ Material for the Guides was adapted from these sources:
 * [Writing Ruby C extensions: Part 1](http://tenderlovemaking.com/2009/12/18/writing-ruby-c-extensions-part-1)
 * [Writing Ruby C extensions: Part 2](http://tenderlovemaking.com/2010/12/11/writing-ruby-c-extensions-part-2)
 
-Hosting
+호스팅
 -------
 
-Hosted by [GitHub Pages](http://pages.github.com/).
+[GitHub Pages](http://pages.github.com/)에서 호스팅합니다.
