@@ -1,24 +1,25 @@
 ---
 layout: default
-title: Frequently Asked Questions
+title: 자주 묻는 질문들
 url: /faqs
 previous: /contributing
 next: /plugins
 ---
 
-<em class="t-gray">More of the "why" and "wtf" than "how".</em>
+<em class="t-gray">"어떻게"보단 "왜죠"나 "이런 미친"에 대한 내용들</em>
 
-The RubyGems development team has gotten a lot of support requests over the
-years, and this is a list of the questions users both new and old that
-frequently pop up.
+RubyGems 개발 팀은 여러 해에 걸쳐 많은 지원 요청을 받고 있습니다. 다음은
+사용자의 경험과 관계없이 자주 나오는 질문들입니다.
 
-* [I installed gems with `--user-install` and their commands are not available](#user-install)
-* [How can I trust Gem code that's automatically downloaded?](#security)
-* [Why does `require 'some-gem'` fail?](#require-fail)
-* [Why does require return false when loading a file from a gem?](#require-false)
+* [`--user-install`로 gem을 설치했더니 명령어를 사용할 수 없습니다.](#user-install)
+* [어떻게 자동으로 다운로드된 gem 코드를 신뢰할 수 있나요?](#security)
+* [왜 `require 'some-gem'`이 실패하죠?](#require-fail)
+* [왜 gem에서 파일을 로드할 때 require가 false를 반환하나요?](#require-false)
 
-We also answer questions on the [RubyGems Support](http://help.rubygems.org/) site and on IRC
-in #rubygems. Some of the information you can find on the support site includes:
+
+또한 [RubyGems Support](http://help.rubygems.org/) 사이트와 #rubygems IRC에서도
+질문에 대답하고 있습니다. support 사이트에서 찾을 수 있는 정보에는 이런 것들이
+있습니다.
 
 * [Installing gems with no network](http://help.rubygems.org/kb/rubygems/installing-gems-with-no-network)
 * [Why do I get HTTP Response 302 or 301 when installing a gem?](http://help.rubygems.org/kb/rubygems/why-do-i-get-http-response-302-or-301-when-installing-a-gem)
@@ -26,48 +27,46 @@ in #rubygems. Some of the information you can find on the support site includes:
 
 <a id="user-install"></a>
 
-I installed gems with `--user-install` and their commands are not available
+`--user-install`로 gem을 설치했더니 명령어를 사용할 수 없습니다.
 ---------------------------------------------------------------------------
 
-When you use the `--user-install` option, RubyGems will install the gems to a
-directory inside your home directory, something like `~/.gem/ruby/1.9.1`. The
-commands provided by the gems you installed will end up in
-`~/.gem/ruby/1.9.1/bin`. For the programs installed there to be available for
-you, you need to add `~/.gem/ruby/1.9.1/bin` to your `PATH` environment
-variable.
+`--user-install` 옵션을 사용할 때, RubyGems은 gem을 `~/.gem/ruby/1.9.1` 같은 홈
+디렉터리 안의 디렉터리에 설치합니다. 설치된 gem의 명령어는
+`~/.gem/ruby/1.9.1/bin`에 들어갑니다. 여기에 설치된 프로그램을 사용하려면,
+`PATH` 환경 변수에 `~/.gem/ruby/1.9.1/bin`을 추가할 필요가 있습니다.
 
-For example, if you use bash you can add that directory to your `PATH` by
-adding code like this to your `~/.bashrc` file:
+예를 들어, bash를 사용한다면 `~/.bashrc` 파일에 이 코드를 넣어서 디렉터리를
+`PATH`에 추가할 수 있습니다.
 
     if which ruby >/dev/null && which gem >/dev/null; then
         PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
     fi
 
-After adding this code to your `~/.bashrc`, you need to restart your shell for
-the changes to take effect. You can do this by opening a new terminal window or
-by running `exec $SHELL` in the window you already have open.
+`~/.bashrc` 파일에 이 코드를 추가한 다음, 셸을 다시 시작해야 변경 사항이
+반영됩니다. 새로운 터미널 윈도우를 열거나 이미 열린 윈도우에서 `exec $SHELL`을
+실행해서 재시작 할 수 있습니다.
 
 <a id="security"></a>
 
-How can I trust Gem code that's automatically downloaded?
+어떻게 자동으로 다운로드된 gem 코드를 신뢰할 수 있나요?
 ---------------------------------------------------------
 
-The same way you can trust any other code you install from the net: ultimately,
-you can't. You are responsible for knowing the source of the gems that you are
-using. In a setting where security is critical, you should only use known-good
-gems, and possibly perform your own security audit on the gem code.
+인터넷에서 설치한 다른 코드와 같은 방법으로 신뢰하면 됩니다. 궁극적으로는, 할 수
+없습니다. 당신은 사용하는 gem의 소스를 알아야 할 책임이 있습니다. 보안이 중요한
+곳에서는 알려진 좋은 gem만 사용해야 합니다. 그리고 가능하면 gem 코드의 보안
+감사는 직접 수행하시는 게 좋습니다.
 
-The Ruby community is discussing ways to make gem code more secure in the future,
-using some public-key infrastructure. To see the progress of this discussion, visit the
-[rubygems-trust](https://github.com/rubygems-trust) organization on GitHub.
+루비 커뮤니티는 앞으로 공개 키 인프라를 사용해 gem 코드를 보다 안전하게 하는
+방법에 대해 토론하고 있습니다. 이 논의의 진행 상활을 보시려면, GitHub에 있는
+[rubygems-trust](https://github.com/rubygems-trust) 조직을 방문하세요.
 
 <a id="require-fail"></a>
 
-Why does `require 'some-gem'` fail?
+왜 `require 'some-gem'`이 실패하죠?
 -----------------------------------
 
-Not every library has a strict mapping between the name of the gem and the name of
-the file you need to require. First you should check to see if the files match correctly:
+모든 라이브러리가 gem의 이름과 require 해야 할 파일 이름이 엄격하게 일치하지는
+않습니다. 먼저 파일이 일치하는지 확인하셔야 합니다.
 
     $ gem list RedCloth
 
@@ -91,14 +90,16 @@ the file you need to require. First you should check to see if the files match c
     $ ruby -rubygems -e 'require "redcloth"'
     $ # success!
 
-If you’re requiring the correct file, maybe `gem` is using a different ruby than `ruby`:
+맞는 파일을 require 했다면, 아마 `gem`이 `ruby`와는 다른 루비를 사용하고 있을
+수 있습니다.
 
     $ which ruby
     /usr/local/bin/ruby
     $ gem env | grep 'RUBY EXECUTABLE'
        - RUBY EXECUTABLE: /usr/local/bin/ruby1.9
 
-In this instance we’ve got two ruby installations so that `gem` uses a different version than `ruby`. You can probably fix this by adjusting a symlink:
+이 인스턴스에서는 설치된 루비가 두 개입니다. 그래서 `gem`이 사용하는 루비가
+`ruby`와 다르죠. 이는 symlink를 조정해서 바르게 고칠 수 있습니다.
 
     $ ls -l /usr/local/bin/ruby*
     lrwxr-xr-x  1 root  wheel       76 Jan 20  2010 /usr/local/bin/ruby@ -> /usr/local/bin/ruby1.8
@@ -109,27 +110,26 @@ In this instance we’ve got two ruby installations so that `gem` uses a differe
     -rwxr-xr-x  1 root  wheel  550 Jul 15 16:36 /usr/local/bin/gem1.8*
     -rwxr-xr-x  1 root  wheel  550 Jul  6 19:30 /usr/local/bin/gem1.9*
 
-You may also need to give `irb` the same treatment.
+아마 `irb`도 같은 조치가 필요할 겁니다.
 
 <a id="require-false"></a>
 
-Why does require return false when loading a file from a gem?
+왜 gem에서 파일을 로드할 때 require가 false를 반환하나요?
 -------------------------------------------------------------
 
-Require returns false when loading a file from a gem. Usually require will return
-true when it has loaded correctly. What’s wrong?
+로드가 맞게 되었다면 보통 require는 true를 반환합니다. gem에서 파일을 로드할 때
+require가 false를 반환한다면 무엇이 잘못된 걸까요?
 
-Nothing's wrong. Well, something. But nothing you need to worry about.
+잘못된 건 없습니다. 음, 있을 순 있어요. 하지만 걱정할 정도는 아닙니다.
 
-A false return from the require method does not indicate an error. It just
-means that the file has already been loaded.
+require 메소드가 false를 반환하는 것은 에러가 아닙니다. 그냥 그 파일은 이미
+로드되어 있다는 의미입니다.
 
-RubyGems has a feature that allows a file to be automatically loaded
-when a gem is activated (i.e. selected). When you require a file that is
-in an inactive gem, the RubyGems software will activate that gem for you.
-During that activation, any autoloaded files will be loaded for you.
+RubyGems에는 gem이 활성화될 때(예를 들면 선택될 때) 파일을 자동으로 로드하는
+기능이 있습니다. 비활성화된 gem에서 파일을 require할 때, RubyGems 소프트웨어는
+그 gem을 활성화합니다. 활성화하는 동안, 모든 자동으로 로드된 파일들이
+로드됩니다.
 
-So, by the time your require statement actually does the work of loading
-the file, it has already been autoloaded via the gem activation, and
-therefore the statement returns false.
+그래서 require 문은 실제로 파일을 로드하는 작업을 수행하고, 이는 gem을 활성화할
+때 이미 자동으로 로드되어, 이 구문은 false를 반환하게 됩니다.
 
