@@ -1,30 +1,31 @@
 ---
 layout: default
-title: Patterns
+title: 패턴
 url: /patterns
 previous: /ssl-certificate-update
 next: /specification-reference
 ---
 
-<em class="t-gray">Common practices to make your gem users' and other developers' lives easier.</em>
+<em class="t-gray">gem 사용자와 다른 개발자의 인생을 쉽게 할 일반적인 기법</em>
 
-* [Consistent naming](#consistent-naming)
-* [Semantic versioning](#semantic-versioning)
-* [Declaring dependencies](#declaring-dependencies)
-* [Loading code](#loading-code)
-* [Prerelease gems](#prerelease-gems)
+* [일관된 이름짓기](#consistent-naming)
+* [유의적 버전](#semantic-versioning)
+* [의존관계 선언](#declaring-dependencies)
+* [코드 로드하기](#loading-code)
+* [gem 사전 릴리스](#prerelease-gems)
 
-Consistent naming
------------------
+일관된 이름짓기
+---------------------
+{:#consistent-naming}
 
-> There are only two hard things in Computer Science: cache invalidation and naming things.
+> 컴퓨터 과학에서 어려운 것은 캐시 무효화와 이름짓기 단 두 가지뿐이다.
 > -[Phil Karlton](http://martinfowler.com/bliki/TwoHardThings.html)
 
-### File names
+### 파일 이름
 
-Be consistent with how your gem files in `lib` and `bin` are named. The
-[hola](https://github.com/qrush/hola) gem from the [make your own
-gem]({{ site.baseurl }}/make-your-own-gem) guide is a great example:
+`lib`과 `bin` 안의 gem 파일 이름은 일치하도록 짓습니다. [gem 만들어
+보기]({{ site.baseurl }}/make-your-own-gem) 가이드에서 사용했던
+[hola](https://github.com/qrush/hola) gem은 훌륭한 예제입니다.
 
     % tree
     .
@@ -39,35 +40,33 @@ gem]({{ site.baseurl }}/make-your-own-gem) guide is a great example:
     └── test
         └── test_hola.rb
 
-The executable and the primary file in `lib` are named the same. A developer
-can easily jump in and call `require 'hola'` with no problems.
+실행 파일과 `lib` 안의 초기 파일은 같은 이름으로 지었습니다. 개발자는 아무
+문제 없이 `require 'hola'`를 호출해서 쉽게 넘어갈 수 있습니다.
 
-### Naming your gem
+### gem 이름짓기
 
-Naming your gem is important.  Before you pick a name for your gem, do a
-quick search on [RubyGems.org](http://rubygems.org) and
-[GitHub](https://github.com/search) to see if someone else has taken it.  Every
-published gem must have a unique name.  Be sure to read our [naming
-recommendations]({{ site.baseurl }}/name-your-gem) when you've found a name you like.
+gem 이름짓기는 중요합니다. gem의 이름을 고르기 전에
+[RubyGems.org](http://rubygems.org)와 [GitHub](https://github.com/search)에서
+이미 사용 중인지 살펴봅시다. 모든 배포되는 gem의 이름은 반드시 유일해야 합니다.
+좋은 이름을 찾았다면 [이름짓기에 관한
+권장사항]({{ site.baseurl }}/name-your-gem)을 읽어보세요.
 
-Semantic versioning
--------------------
+유의적 버전
+-----------------------
+{:#semantic-versioning}
 
-A versioning policy is merely a set of simple rules governing how version
-numbers are allocated. It can be very simple (e.g. the version number is a
-single number starting with 1 and incremented for each successive version), or
-it can be really strange (Knuth’s TeX project had version numbers: 3,
-3.1, 3.14, 3.141, 3.1415; each successive version added another digit to PI).
+버전 관리 정책은 버전 번호를 할당하기 위한 규칙의 집합일 뿐입니다. 간단할 수도
+있고(예를 들어, 버전 번호가 1부터 시작하고 순서대로 증가하는 버전) 굉장히
+이상할 수도 있습니다.(예를 들어, Knuth의 TeX 프로젝트는 파이에 숫자를 순서대로
+더하는 3, 3.1, 3.14, 3.141, 3.1415 같은 버전 번호사용합니다.)
 
-The RubyGems team urges gem developers to follow the
-[Semantic Versioning](http://semver.org) standard for their gem's versions. The
-RubyGems library itself does not enforce a strict versioning policy, but using
-an "irrational" policy will only be a disservice to those in the community who
-use your gems.
+RubyGems 팀은 gem 개발자에게 gem 버전을 [유의적
+버전](http://semver.org/lang/ko/) 표준에 맞추도록 강력히 권장하고 있습니다.
+RubyGems 라이브러리 자체는 엄격한 버전 정책을 강제하지는 않습니다만, "변칙적인"
+정책은 gem을 사용하는 커뮤니티에 민폐가 될 수 있습니다.
 
-Suppose you have a 'stack' gem that holds a `Stack` class with both `push` and
-`pop` functionality. Your `CHANGELOG` might look like this if you use
-semantic versioning:
+`Stack` 클래스에 `push`와 `pop` 기능을 제공하는 'stack' gem을 운영하고 있다고
+해봅시다. 유의적 버전을 사용할 경우, `CHANGELOG`는 이렇게 될 것입니다.
 
 * **Version 0.0.1**: The initial `Stack` class is released.
 * **Version 0.0.2**: Switched to a linked list implementation because it is
@@ -80,36 +79,36 @@ semantic versioning:
 * **Version 1.1.1**: Fixed a bug in the linked list implementation.
 * **Version 1.1.2**: Fixed a bug introduced in the last fix.
 
-Semantic versioning boils down to:
+유의적 버전은 이렇게 요약됩니다.
 
-* **PATCH** `0.0.x` level changes for implementation level detail changes, such
-  as small bug fixes
-* **MINOR** `0.x.0` level changes for any backwards compatible API changes,
-  such as new functionality/features
-* **MAJOR** `x.0.0` level changes for backwards *incompatible* API changes,
-  such as changes that will break existing users code if they update
+* **수(PATCH)** `0.0.x` 수준 변경은 작은 버그 수정 같은 기존 버전과 호환되는 구현
+  수정입니다.
+* **부(MINOR)** `0.x.0` 수준 변경은 새로운 기능 추가 같은 기존 버전과 호환되는 API
+  변경입니다.
+* **주(MAJOR)** `x.0.0` 수준 변경은 업데이트 하면 기존 사용자의 코드를 망가트리는
+  기존 버전과 *호환되지 않는* API 변경입니다.
 
-Declaring dependencies
-----------------------
+의존관계 선언
+--------------------------
+{:#declaring-dependencies}
 
-Gems work with other gems. Here are some tips to make sure they're nice to each
-other.
+gem은 다른 gem과 함께 동작합니다. 여기에 다른 것과 함께 사용해야 할 때 확인해야
+할 몇 가지 팁을 소개하겠습니다.
 
-### Runtime vs. development
+### 런타임과 개발
 
-RubyGems provides two main "types" of dependencies: runtime and development.
-Runtime dependencies are what your gem needs to work (such as
-[rails](http://rubygems.org/gems/rails) needing
-[activesupport](http://rubygems.org/gems/activesupport)).
+RubyGems의 의존성은 런타임 의존성과 개발 의존성, 크게 두 가지 "타입"이 있습니다.
+런타임 의존성은([레일즈](http://rubygems.org/gems/rails)는
+[activesupport](http://rubygems.org/gems/activesupport)가 필요한 것처럼) gem이
+동작할 때 필요한 것입니다.
 
-Development dependencies are useful for when someone wants to make
-modifications to your gem. When you specify development dependencies, another
-developer can run `gem install --dev your_gem` and RubyGems will grab both sets
-of dependencies (runtime and development). Typical development dependencies
-include test frameworks and build systems.
+개발 의존성은 다른 사람이 gem을 수정하려 할 때 유용한 것입니다. 개발 의존성을
+지정하면, 다른 개발자는 `gem install --dev your_gem`을 실행해 RubyGems가 양쪽
+(런타임, 개발)의존성을 다 가져오게 할 수 있습니다. 일반적으로 개발 의존성에는
+테스트 프레임워크와 빌드 시스템이 들어갑니다.
 
-Setting dependencies in your gemspec is easy. Just use `add_runtime_dependency`
-and `add_development_dependency`:
+gemspec에 의존성을 설정하는 것은 간단합니다. 그냥 `add_runtime_dependency`와
+`add_development_dependency`를 사용하시면 됩니다.
 
     Gem::Specification.new do |s|
       s.name = "hola"
@@ -119,26 +118,26 @@ and `add_development_dependency`:
       s.add_development_dependency "bourne",
         [">= 0"]
 
-### Don't use `gem` from within your gem
+### `gem`을 gem 안에서 사용하지 말 것
 
-You may have seen some code like this around to make sure you're using a
-specific version of a gem:
+특정 gem 버전을 사용하고 있는지 확인하기 위해 이런 코드를 사용하고 계실 수도
+있습니다.
 
     gem "extlib", ">= 1.0.8"
     require "extlib"
 
-It's reasonable for applications that consume gems to use this (though they
-could also use a tool like [Bundler](http://bundler.io)). Gems themselves
-**should not** do this. They should instead use dependencies in the gemspec so
-RubyGems can handle loading the dependency instead of the user.
+이것은 gem을 사용하는 애플리케이션에서는 합리적으로 보일 수 있습니다.(물론
+[Bundler](http://bundler.io) 같은 도구를 사용할 수도 있습니다만) 하지만
+gem에서는 이렇게 하면 **안 됩니다**. 대신 RubyGems가 사용자 대신 의존성 로드를
+관리할 수 있도록 gemspec의 의존성을 사용해야 합니다.
 
-### Pessimistic version constraint
+### 비관적(Pessimistic) 버전 제한
 
-If your gem properly follows [semantic versioning](http://semver.org) with its
-versioning scheme, then other Ruby developers can take advantage of this when
-choosing a version constraint to lock down your gem in their application.
+gem이 버전 관리 방식에 [유의적 버전](http://semver.org/lang/ko/)을 잘 따르고
+있다면, 다른 루비 개발자도 애플리케이션에서 사용할 gem을 제한하는 데 이를 활용할
+수 있습니다.
 
-Let's say the following releases of a gem exist:
+이런 gem의 릴리스가 있다고 해봅시다.
 
 * **Version 2.1.0** — Baseline
 * **Version 2.2.0** — Introduced some new (backward compatible) features.
@@ -148,9 +147,9 @@ Let's say the following releases of a gem exist:
 * **Version 3.0.0** — Reworked the interface. Code written to version 2.x might
   not work.
 
-Someone who wants to use your gem has determined that version 2.2.0 works with
-their software, but version 2.1.0 doesn't have a feature they need. Adding a
-dependency in a gem (or a `Gemfile` from Bundler) might look like:
+gem을 사용할 사람은 2.2.0 버전이 자신의 소프트웨어에서 동작하는 것을 확인 했지만
+2.1.0 버전에는 필요한 기능이 없었습니다. gem에 넣을 의존성(아니면 Bundler의
+`Gemfile`에 넣을)은 아마 이렇게 될 것입니다.
 
     # gemspec
     spec.add_runtime_dependency 'library',
@@ -159,12 +158,12 @@ dependency in a gem (or a `Gemfile` from Bundler) might look like:
     # bundler
     gem 'library', '>= 2.2.0'
 
-This is an "optimistic" version constraint. It's saying that all changes from
-2.x on *will* work with my software, but for version 3.0.0 this will not be
-true.
+이것은 "낙관적인(optimistic)" 버전 제약입니다. 2.x부터의 모든 변경은 내
+소프트웨어에서 동작 *할 것이라는* 이야기입니다만, 3.0.0 버전에서는 그렇지 않을
+것입니다.
 
-The alternative here is to be "pessimistic". This explicitly excludes the
-version that might break your code.
+여기서 "비관적으로" 할 수도 있습니다. 이 예제는 명시적으로 코드를 망가트릴 수
+있는 버전을 제외하고 있습니다.
 
     # gemspec
     spec.add_runtime_dependency 'library',
@@ -173,8 +172,8 @@ version that might break your code.
     # bundler
     gem 'library', '>= 2.2.0', '< 3.0'
 
-RubyGems provides a shortcut for this, commonly known as the
-[twiddle-wakka](http://robots.thoughtbot.com/post/2508037841/twiddle-wakka):
+RubyGems에는 일반적으로 [twiddle-wakka](http://robots.thoughtbot.com/post/2508037841/twiddle-wakka)라
+알려진 단축 표기법이 있습니다.
 
     # gemspec
     spec.add_runtime_dependency 'library',
@@ -183,11 +182,11 @@ RubyGems provides a shortcut for this, commonly known as the
     # bundler
     gem 'library', '~> 2.2'
 
-Notice that we dropped the `PATCH` level of the version number. Had we said
-`~> 2.2.0`, that would have been equivalent to `['>= 2.2.0', '< 2.3.0']`.
+버전 번호의 `PATCH` 수준을 적지 않은 것에 주목하세요. `~> 2.2.0`이라 했다면,
+`['>= 2.2.0', '< 2.3.0']`과 같은 뜻이 됩니다.
 
-If you want to allow use of newer backwards-compatible versions but need a
-specific bug fix you can use a compound requirement:
+새로운 하위호환 버전을 사용하고 싶지만 특정 버그 픽스도 필요하다면 복합
+요구사항을 사용할 수 있습니다.
 
     # gemspec
     spec.add_runtime_dependency 'library', '~> 2.2', '>= 2.2.1'
@@ -195,56 +194,52 @@ specific bug fix you can use a compound requirement:
     # bundler
     gem 'library', '~> 2.2', '>= 2.2.1'
 
-The important note to take home here is to be aware others *will* be using
-your gems, so guard yourself from potential bugs/failures in future releases
-by using `~>` instead of `>=` if at all possible.
+여기서 중요한 점은 다른 사람이 당신의 gem을 사용할 수도 있다는 것입니다.
+그러므로 앞으로의 릴리스에서 잠제적인 버그/실패로부터 자유로우려면 가능한 한
+`>=` 대신 `~>`를 사용하세요.
 
-> If you're dealing with a lot of gem dependencies in your application, we
-> recommend that you take a look into [Bundler](http://bundler.io) or
-> [Isolate](https://github.com/jbarnette/isolate) which do a great job of
-> managing a complex version manifest for many gems.
+> 애플리케이션에서 많은 의존성을 관리한다면, [Bundler](http://bundler.io)나
+> [Isolate](https://github.com/jbarnette/isolate) 같은 여러 gem의 복잡한
+> 버전 명세를 잘 관리해주는 툴을 살펴보시길 바랍니다.
 
-If you want to allow prereleases and regular releases use a compound
-requirement:
+사전 릴리스와 통상 릴리스를 동시에 허용하려면 복합 요구사항을 사용하면 됩니다.
 
     # gemspec
     spec.add_runtime_dependency 'library', '>= 2.0.0.a', '< 3'
 
-Using `~>` with prerelease versions will restrict you to prerelease versions
-only.
+사전 릴리스 버전에 `~>`를 사용하면 사전 릴리스 버전만으로 제한하게 됩니다.
 
-### Requiring RubyGems
+### RubyGems require하기
 
-Summary: don't.
+한줄 요약: 하지마세요.
 
-This line...
+이 줄...
 
     require 'rubygems'
 
-...should not be necessary in your gem code, since RubyGems is loaded
-already when a gem is required.  Not having `require 'rubygems'` in your code
-means that the gem can be easily used without needing the RubyGems client to
-run.
+...은 RubyGems는 이미 gem을 require할 때 로드했기 때문에 gem 코드에서
+필요 없습니다. 코드에서 `require 'rubygems'`가 없는 것은 gem이 RubyGems
+클라이언트 없이도 쉽게 사용할 수 있다는 의미입니다.
 
-For more information please check out [Ryan
-Tomayko's](http://tomayko.com/writings/require-rubygems-antipattern) original
-post about the subject.
+더 자세한 정보는 [Ryan Tomayko
+님의](http://tomayko.com/writings/require-rubygems-antipattern) 원문을
+읽어보세요.
 
-Loading code
-------------
+코드 로드하기
+----------------
+{:#loading-code}
 
-At its core, RubyGems exists to help you manage Ruby's `$LOAD_PATH`, which is
-how the `require` statement picks up new code. There's several things you can
-do to make sure you're loading code the right way.
+RubyGems의 핵심은 RubyGems는 루비의 `require` 구문이 새로운 코드를 가져올 때
+사용하는 `$LOAD_PATH`의 관리를 도와주기 위해 존재한다는 것입니다. 코드를
+올바르게 로드하고 있는지 확인하기 위해 할 수 있는 것이 몇 가지 있습니다.
 
-### Respect the global load path
+### 전역 로드 경로 존중하기
 
-When packaging your gem files, you need to be careful of what is in your `lib`
-directory. Every gem you have installed gets its `lib` directory appended onto
-your `$LOAD_PATH`. This means any file on the top level of the `lib` directory
-could get required.
+gem 파일을 꾸릴 때, `lib` 디렉터리 안에 있는 것을 조심해야 합니다. 설치된
+모든 gem은 자신의 `lib` 디렉터리를 `$LOAD_PATH` 안에 넣습니다. 이 말은 `lib`
+디렉터리의 최상위 레벨의 어떤 파일도 require 될 수 있다는 이야기입니다.
 
-For example, let's say we have a `foo` gem with the following structure:
+예를 들어, 이런 구조의 `foo` gem이 있다고 합시다.
 
     .
     └── lib
@@ -254,55 +249,54 @@ For example, let's say we have a `foo` gem with the following structure:
         ├── foo.rb
         └── set.rb
 
-This might seem harmless since your custom `erb` and `set` files are within
-your gem.  However, this is not harmless, anyone who requires this gem will not
-be able to bring in the
-[ERB](http://ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html) or
-[Set](http://www.ruby-doc.org/stdlib/libdoc/set/rdoc/classes/Set.html) classes
-provided by Ruby's standard library.
+이는 커스텀 `erb`와 `set` 파일이 gem 안에 있기 때문에 무해해 보일 수 있습니다.
+하지만, 전혀 무해하지 않습니다. 이 gem을 require하는 사람은
+[ERB](http://ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html)나 루비 표준
+라이브러리의 [Set](http://www.ruby-doc.org/stdlib/libdoc/set/rdoc/classes/Set.html)
+클래스를 가져올 수 없게 됩니다.
 
-The best way to get around this is to keep files in a different directory
-under `lib`. The usual convention is to be consistent and put them in the same
-folder name as your gem's name, for example `lib/foo/cgi.rb`.
+이것을 피하는 가장 좋은 방법은 `lib` 아래의 다른 디렉터리에 파일을 두는
+것입니다. 일반적인 관례는 일관성 있게 gem의 이름과 같은 폴더에 파일을 넣는
+것입니다. 예를 들자면 `lib/foo/cgi.rb` 같은 식으로요.
 
-### Requiring files relative to each other
+### 연관된 파일 require하기
 
-Gems should not have to use `__FILE__` to bring in other Ruby files in your
-gem. Code like this is surprisingly common in gems:
+gem은 안에서 다른 루비 파일을 가져오기 위해 `__FILE__`을 사용할 필요가 없습니다.
+이런 코드는 gem 안에서 놀랄만큼 일반적입니다.
 
     require File.join(
               File.dirname(__FILE__),
               "foo", "bar")
 
-Or:
+아니면 이런 것도요.
 
     require File.expand_path(File.join(
               File.dirname(__FILE__),
               "foo", "bar"))
 
-The fix is simple, just require the file relative to the load path:
+고치기는 쉽습니다. 그냥 로드 경로에 적절하게 파일을 require하면 됩니다.
 
     require 'foo/bar'
 
-Or use require_relative:
+아니면 require_relative를 사용하세요.
 
     require_relative 'foo/bar'
 
-The [make your own gem]({{ site.baseurl }}/make-your-own-gem) guide has a great example of this
-behavior in practice, including a working test suite. The code for that gem is
-[on GitHub](https://github.com/qrush/hola) as well.
+[gem 만들어 보기]({{ site.baseurl }}/make-your-own-gem) 가이드에 실제로 동작하는
+테스트를 포함한 좋은 예제가 있습니다. 그 gem의 코드는
+[GitHub](https://github.com/qrush/hola)에도 있습니다.
 
-### Mangling the load path
+### 로드 경로 망치기
 
-Gems should not change the `$LOAD_PATH` variable.  RubyGems manages this for
-you.  Code like this should not be necessary:
+gem은 `$LOAD_PATH` 변수를 고치면 안 됩니다. RubyGems가 관리해 드립니다. 이런
+코드는 필요하지 않습니다.
 
     lp = File.expand_path(File.dirname(__FILE__))
     unless $LOAD_PATH.include?(lp)
       $LOAD_PATH.unshift(lp)
     end
 
-Or:
+아니면 이런 코드도...
 
     __DIR__ = File.dirname(__FILE__)
 
@@ -310,29 +304,28 @@ Or:
       $LOAD_PATH.include?(__DIR__) ||
       $LOAD_PATH.include?(File.expand_path(__DIR__))
 
-When RubyGems activates a gem, it adds your package's `lib` folder to the
-`$LOAD_PATH` ready to be required normally by another lib or application.  It
-is safe to assume you can then `require` any file in your `lib` folder.
+RubyGems가 gem을 활성화할 때, 패키지의 `lib` 폴더를 `$LOAD_PATH`에 추가해 다른
+라이브러리나 애플리케이션에서 require할 수 있도록 준비해 줍니다. `lib` 폴더의
+파일은 전부 로드할 수 있다고 생각하는 것이 안전합니다.
 
-Prerelease gems
----------------
+gem 사전 릴리스
+-------------------
+{:#prerelease-gems}
 
-Many gem developers have versions of their gem ready to go out for testing or
-"edge" releases before a big gem release. RubyGems supports the concept of
-"prerelease" versions, which could be betas, alphas, or anything else that
-isn't ready as a regular release.
+많은 gem 개발자가 큰 gem 릴리스 전에 릴리스 준비가 되었는지 테스트하기 위한 gem
+버전을 두거나 "edge" 릴리스를 합니다. RubyGems에는 "사전 릴리스" 개념이 있습니다.
+이는 베타, 알파를 포함해 뭐든 정규 릴리스가 아닌 것에 사용할 수 있습니다.
 
-Taking advantage of this is easy. All you need is one or more letters in the
-gem version.  For example, here's what a prerelease gemspec's `version` field
-might look like:
+이것을 활용하기는 쉽습니다. gem 버전에 한두 단어를 추가하기만 하면 됩니다.
+예를 들어, 사전 릴리스 gemspec의 `version` 필드는 아마 이렇게 될 것입니다.
 
     Gem::Specification.new do |s|
       s.name = "hola"
       s.version = "1.0.0.pre"
 
-Other prerelease version numbers might include `2.0.0.rc1`, or `1.5.0.beta.3`.
-It just has to have a letter in it, and you're set. These gems can then be
-installed with the `--pre` flag, like so:
+사전 릴리스 버전의 다른 예에는 아마 `2.0.0.rc1`, `1.5.0.beta.3` 같은 것이 있을 수
+있습니다. 그냥 안에 문자를 넣도록 설정하면 됩니다. 이런 gem은 `--pre`를 붙여서
+설치할 수 있습니다. 이렇게요.
 
     % gem list factory_girl -r --pre
 
@@ -348,7 +341,7 @@ installed with the `--pre` flag, like so:
 Credits
 -------
 
-Several sources were used for content for this guide:
+이 가이드는 다음 출처에서 내용을 가져왔습니다.
 
 * [Rubygems Good Practice](http://yehudakatz.com/2009/07/24/rubygems-good-practice/)
 * [Gem Packaging: Best Practices](http://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices)
