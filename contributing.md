@@ -1,35 +1,37 @@
 ---
 layout: default
-title: Contributing to RubyGems
+title: RubyGems에 기여하기
 url: /contributing
 previous: /resources
 next: /faqs
 ---
 
-<em class="t-gray">How you can help make RubyGems and the surrounding ecosystem better.</em>
+<em class="t-gray">RubyGems와 주변 생태 개선을 도와주기</em>
 
-Looking to contribute to a RubyGems project? You've come to the right place!
-There are many development efforts going on right now, and they could use
-your help. Just follow the links below to get started contributing or to contact the
-project maintainers.
+RubyGems에 기여하려 하시나요? 잘 찾아 오셨습니다!
+지금도 개발이 많이 이루어지고 있고, 당신의 도움을 필요로 합니다. 밑의 링크를 타고
+기여를 시작하시거나 프로젝트의 메인테이너에 연락하세요.
 
-* [Core Projects](#core-projects)
-* [Ecosystem Projects](#ecosystem-projects)
-* [Add Your Own Idea](#add-your-own-idea)
+* [핵심 프로젝트](#core-projects)
+* [생태계 프로젝트](#ecosystem-projects)
+* [아이디어 추가하기](#add-your-own-idea)
 
-Core Projects
--------------
+핵심 프로젝트
+-----------------
+{:#core-projects}
 
-These projects are under the wing of the core [RubyGems team](https://github.com/rubygems/).
+이들 프로젝트는 핵심 [RubyGems 팀](https://github.com/rubygems/)의 영향 아래
+있습니다.
 
 <a class="project__name is-first" href="https://github.com/rubygems/rubygems">RubyGems</a>
 
-Ruby's premier packaging system. Bundled with Ruby 1.9+ and available for Ruby 1.8. Any time you run
-`gem` at the command line, you're using this project.
+루비에서 가장 많이 쓰는 패키지 시스템입니다. 루비 1.9 이상에 포함되어 있으며,
+루비 1.8에서도 사용할 수 있습니다. 커맨드 라인에서 `gem`을 실행할 때 이
+프로젝트를 사용합니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems/issues">Issues</a>
-  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/rubygems-developers">Mailing List</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems/issues">이슈</a>
+  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/rubygems-developers">메일링 리스트</a>
 </div>
 
 <p class="avatars">
@@ -47,12 +49,13 @@ Ruby's premier packaging system. Bundled with Ruby 1.9+ and available for Ruby 1
   </a>
 </p>
 
-<em class="t-gray t-uppercase">Code Guidelines:</em>
+<em class="t-gray t-uppercase">코드 가이드라인:</em>
 
-* New features should be coupled with tests.
-* Ensure that your code blends well with ours (eg, no trailing whitespace, match indentation and coding style).
-* Don’t modify the history file or version number.
-* If you have any questions, just ask us on IRC in #rubygems or file [an issue][1].
+* 새 기능은 테스트와 함께 추가되어야 합니다.
+* 코드가 기존의 것과 잘 섞여야 합니다.(예를 들어, 줄 뒤의 공백은 없어야 하고,
+  들여쓰기랑 코딩 스타일도 맞아야 합니다.)
+* 이력 파일과 버전 번호는 수정하지 않습니다.
+* 질문이 있으면 IRC의 #rubygems 채널이나 [이슈][1]로 남기세요.
 
 [0]: https://github.com/rubygems/rubygems
 [1]: https://github.com/rubygems/rubygems/issues
@@ -60,13 +63,13 @@ Ruby's premier packaging system. Bundled with Ruby 1.9+ and available for Ruby 1
 
 <a class="project__name" href="https://github.com/rubygems/rubygems.org">RubyGems.org</a>
 
-The Ruby community's gem hosting service. Provides a better API for accessing,
-deploying, and managing gems along with clear and accessible project pages.
+루비 커뮤니티의 gem 호스트 서비스입니다. 깔끔하고 이용하기 편한 프로젝트 페이지로
+gem을 찾고, 배포하고, 관리하기에 더 나은 API를 제공합니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://rubygems.org">Site</a>
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems.org/issues">Issues</a>
-  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/gemcutter">Mailing List</a>
+  <a class="project__link t-link" href="https://rubygems.org">사이트</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems.org/issues">이슈</a>
+  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/gemcutter">메일링 리스트</a>
 </div>
 
 <p class="avatars">
@@ -84,12 +87,13 @@ deploying, and managing gems along with clear and accessible project pages.
   </a>
 </p>
 
-<a class="project__name" href="https://github.com/rubygems/rubygems-infrastructure">RubyGems Infrastructure</a>
+<a class="project__name" href="https://github.com/rubygems/rubygems-infrastructure">RubyGems 인프라</a>
 
-Chef cookbooks and bootstrap scripts to configure and manage Rubygems.org on AWS.
+AWS에 있는 Rubygems.org를 설정하고 관리하기 위한 Chef 쿡북과 부트스트랩
+스크립트입니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-infrastructure/wiki">Wiki</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-infrastructure/wiki">위키</a>
   <a class="project__link t-link" href="https://trello.com/b/cd2HqKnE/infrastructure">Trello</a>
 </div>
 
@@ -105,13 +109,13 @@ Chef cookbooks and bootstrap scripts to configure and manage Rubygems.org on AWS
   </a>
 </p>
 
-<a class="project__name" href="https://github.com/rubygems/rubygems-status">RubyGems Status</a>
+<a class="project__name" href="https://github.com/rubygems/rubygems-status">RubyGems 상태</a>
 
-A simple Rails app to show the status of the rubygems.org infrastructure.
+rubygems.org 인프라의 상태를 보여주는 간단한 레일즈 앱입니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="http://status.rubygems.org">Site</a>
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-status/issues">Issues</a>
+  <a class="project__link t-link" href="http://status.rubygems.org">사이트</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-status/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -123,14 +127,14 @@ A simple Rails app to show the status of the rubygems.org infrastructure.
   </a>
 </p>
 
-<a class="project__name" href="https://github.com/rubygems/guides">RubyGems Guides</a>
+<a class="project__name" href="https://github.com/rubygems/guides">RubyGems 가이드</a>
 
-The central home for RubyGems documentation, including tutorials and reference material.
-User-contributed guides are more than welcome and encouraged!
+튜토리얼과 레퍼런스를 가지고 있는 RubyGems 문서의 공식 페이지입니다.
+사용자의 가이드 기여는 매우 환영하고 또 권장합니다!
 
 <div class="project__links">
-  <a class="project__link t-link" href="http://guides.rubygems.org">Site</a>
-  <a class="project__link t-link" href="https://github.com/rubygems/guides/issues">Issues</a>
+  <a class="project__link t-link" href="http://guides.rubygems.org">사이트</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/guides/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -145,14 +149,13 @@ User-contributed guides are more than welcome and encouraged!
   </a>
 </p>
 
-<a class="project__name" href="https://github.com/rubygems/rubygems-test">RubyGems Testers</a>
+<a class="project__name" href="https://github.com/rubygems/rubygems-test">RubyGems 테스터</a>
 
-A community effort to document the test results for various gems,
-on various machine architectures.
+커뮤니티의 노력으로 만든 여러 환경에서의 여러 gem의 테스트 결과입니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="http://test.rubygems.org/">Site</a>
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-test/issues">Issues</a>
+  <a class="project__link t-link" href="http://test.rubygems.org/">사이트</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-test/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -166,14 +169,13 @@ on various machine architectures.
 
 <a class="project__name" href="https://github.com/rubygems/gemwhisperer">Gem Whisperer</a>
 
-An example of how to use [RubyGems.org's
-webhooks](http://guides.rubygems.org/rubygems-org-api/#webhook) to listen to every gem being
-pushed. Currently powers [m.rubygems.org](http://m.rubygems.org) and
-[@rubygems](http://twitter.com/rubygems).
+푸시되는 모든 gem을 감시하기 위한 [RubyGems.org 웹훅](http://guides.rubygems.org/rubygems-org-api/#webhook)의
+사용례입니다. 현재 웹훅으로 [m.rubygems.org](http://m.rubygems.org)와 [@rubygems](http://twitter.com/rubygems)를
+움직입니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="http://m.rubygems.org/">Site</a>
-  <a class="project__link t-link" href="https://github.com/rubygems/gemwhisperer/issues">Issues</a>
+  <a class="project__link t-link" href="http://m.rubygems.org/">사이트</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/gemwhisperer/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -185,14 +187,14 @@ pushed. Currently powers [m.rubygems.org](http://m.rubygems.org) and
   </a>
 </p>
 
-<a class="project__name" href="https://github.com/rubygems/gems">RubyGems.org API Library</a>
+<a class="project__name" href="https://github.com/rubygems/gems">RubyGems.org API 라이브러리</a>
 
-A Ruby implementation of the various API endpoints available on RubyGems.org.
-If you're writing a service in Ruby to interact with gems available to the
-community, check this out!
+RubyGems.org에서 사용할 수 있는 여러 API 단말의 루비 구현체입니다.
+루비로 커뮤니티에서 사용 가능한 gem과 상호작용하는 서비스를 만든다면,
+살펴보세요!
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/rubygems/gems/issues">Issues</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/gems/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -201,16 +203,15 @@ community, check this out!
   </a>
 </p>
 
-<a class="project__name" href="https://github.com/rubygems/rubygems-mirror">RubyGems Mirror</a>
+<a class="project__name" href="https://github.com/rubygems/rubygems-mirror">RubyGems 미러</a>
 
-The current state of mirroring RubyGems is frankly embarrassing. We need
-RubyGems to be highly available all over the world, no more excuses! Discussion
-is going on in the [rubygems-mirror
-wiki](https://github.com/rubygems/rubygems-mirror/wiki/Mirroring-2.0) on how
-to improve it.
+RubyGems 미러의 현재 상태는 솔직히 좋지 않습니다. RubyGems를 전 세계에 걸쳐
+언제나 사용가능하게 해야할 필요가 있습니다. 이제 더 이상 변명은 없습니다!
+[rubygems-mirror 위키](https://github.com/rubygems/rubygems-mirror/wiki/Mirroring-2.0)에서
+어떻게 개선할지에 대한 토론이 진행 중입니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-mirror/issues">Issues</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-mirror/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -221,26 +222,28 @@ to improve it.
 
 <a class="project__name" href="https://github.com/rubygems/rubygems-verification">RubyGems Verification</a>
 
-A collection of tools and data used for verifying the integrity of gems on rubygems.org based on checksums
-collected by third parties.
+서드 파티가 수집한 체크섬을 기반으로 rubygems.org에 있는 gem의 무결성을 검증하기
+위한 도구와 데이터의 모음입니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-verification/issues">Issues</a>
+  <a class="project__link t-link" href="https://github.com/rubygems/rubygems-verification/issues">이슈</a>
 </div>
 
-## Ecosystem Projects
+## 생태계 프로젝트
+{:#ecosystem-projects}
 
-These projects are outside of the RubyGems core, but work closely with RubyGems to improve the gem experience for everyone.
+이들 프로젝트는 RubyGems의 핵심이 아니지만, 모두의 사용자 경험을 증진시키기 위해
+RubyGems와 긴밀하게 협력합니다.
 
 <a class="project__name is-first" href="https://github.com/bundler/bundler">Bundler</a>
 
-Bundler manages an application's dependencies through its entire life across
-many machines systematically and repeatably.
+Bundler는 체계적이고 반복적으로 많은 기기에 걸쳐 애플리케이션 전체 생명의
+의존성을 관리합니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="http://bundler.io">Site</a>
-  <a class="project__link t-link" href="https://github.com/bundler/bundler/issues">Issues</a>
-  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/ruby-bundler">Mailing List</a>
+  <a class="project__link t-link" href="http://bundler.io">사이트</a>
+  <a class="project__link t-link" href="https://github.com/bundler/bundler/issues">이슈</a>
+  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/ruby-bundler">메일링 리스트</a>
 </div>
 
 <p class="avatars">
@@ -260,11 +263,11 @@ many machines systematically and repeatably.
 
 <a class="project__name" href="https://github.com/jbarnette/isolate">Isolate</a>
 
-A simple gem sandbox that makes sure your application has the exact gem
-versions you require. It does not perform dependency resolution like Bundler.
+애플리케이션이 require한 정확한 gem 버전을 가지고 있는지 확인하는 간단한
+gem 샌드박스입니다. Bundler처럼 의존성의 확인을 수행하지는 않습니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/jbarnette/isolate/issues">Issues</a>
+  <a class="project__link t-link" href="https://github.com/jbarnette/isolate/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -275,15 +278,15 @@ versions you require. It does not perform dependency resolution like Bundler.
 
 <a class="project__name" href="https://github.com/lsegal/rubydoc.info">RubyDoc.info</a>
 
-A fantastic provider of [YARD](http://yardoc.org) documentation for every
-RubyGem available. Push a gem, and you get docs created instantly!
-RubyGems.org links to this site and it uses [RubyGems.org's
-webhooks](http://guides.rubygems.org/rubygems-org-api/#webhook) as well.
+문서화된 모든 RubyGem의 [YARD](http://yardoc.org) 문서를 제공하는 곳입니다.
+gem을 넣는 즉시 문서가 생성됩니다! RubyGems.org는 이 사이트를 링크하며,
+이 사이트는 [RubyGems.org의 웹훅](http://guides.rubygems.org/rubygems-org-api/#webhook)을
+사용합니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="http://rubydoc.info">Site</a>
-  <a class="project__link t-link" href="https://github.com/lsegal/rubydoc.info/issues">Issues</a>
-  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/yardoc">Mailing List</a>
+  <a class="project__link t-link" href="http://rubydoc.info">사이트</a>
+  <a class="project__link t-link" href="https://github.com/lsegal/rubydoc.info/issues">이슈</a>
+  <a class="project__link t-link" href="https://groups.google.com/forum/#!forum/yardoc">메일링 리스트</a>
 </div>
 
 <p class="avatars">
@@ -297,12 +300,12 @@ webhooks](http://guides.rubygems.org/rubygems-org-api/#webhook) as well.
 
 <a class="project__name" href="https://github.com/copiousfreetime/stickler">Stickler</a>
 
-Stickler is a great way to run and organize an internal gem server in your
-organization. It helps with mirroring gems and providing a gem source to add
-internal or proprietary code to.
+Stickler는 조직 내의 내부 gem 서버를 운영하고 구성하는 훌륭한 방법입니다.
+Stickler는 gem을 미러링하고 내부이거나 사유 재산인 gem 소스를 제공하게 도울 수
+있습니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/copiousfreetime/stickler/issues">Issues</a>
+  <a class="project__link t-link" href="https://github.com/copiousfreetime/stickler/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -313,12 +316,12 @@ internal or proprietary code to.
 
 <a class="project__name" href="https://github.com/cwninja/geminabox">Geminabox</a>
 
-Need simple RubyGems hosting? Geminabox can do that! This project provides an
-easy to setup way to host RubyGems internally and allow uploading of gems
-without much hassle.
+간단한 RubyGems 호스트가 필요하신가요? Geminabox로 만들 수 있습니다! 이
+프로젝트는 복잡한 과정 없이 내부 RubyGems를 간단히 설정하고 gem을 올릴 수
+있게 합니다.
 
 <div class="project__links">
-  <a class="project__link t-link" href="https://github.com/cwninja/geminabox/issues">Issues</a>
+  <a class="project__link t-link" href="https://github.com/cwninja/geminabox/issues">이슈</a>
 </div>
 
 <p class="avatars">
@@ -327,9 +330,10 @@ without much hassle.
   </a>
 </p>
 
-Add Your Own Idea
------------------
+아이디어 추가하기
+---------------------
+{:#add-your-own-idea}
 
-We’d love for your new idea to be on this list. If you’re working on a
-RubyGems related project, just [fork this
-repo](https://github.com/rubygems/guides) and add the link!
+이 목록에 새로운 아이디어를 추가해 주셨으면 합니다. RubyGems에 관련된 프로젝트를
+하신다면 그냥 [이 저장소를 포크](https://github.com/rubygems/guides)해 링크를
+추가해 주세요!
