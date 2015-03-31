@@ -1,22 +1,27 @@
 ---
 layout: default
-title: Plugins
+title: 플러그인
 url: /plugins
 previous: /faqs
 next: /credits
 ---
 
-<em class="t-gray">Extensions that use the RubyGems plugin API.</em>
+<em class="t-gray">RubyGems 플러그인 API를 사용하는 확장기능</em>
 
-As of RubyGems 1.3.2, RubyGems will load plugins installed in gems or $LOAD\_PATH.  Plugins must be named 'rubygems\_plugin' (.rb, .so, etc) and placed at the root of your gem's #require\_path.  Plugins are discovered via Gem::find\_files then loaded.  Take care when implementing a plugin as your plugin file may be loaded multiple times if multiple versions of your gem are installed.
+RubyGems 1.3.2부터 RubyGems는 $LOAD\_PATH나 gems에 설치한 플러그인을 로드합니다.
+플러그인은 'rubygems\_plugin'(.rb, .so 등)이라는 이름이어야 하며 gem #require\_path의
+루트에 있어야 합니다. 플러그인은 로드 이후 Gem::find\_files로 찾을 수 있습니다.
+플러그인을 구현하실 때에는 여러 버전의 플러그인이 설치되어 있다면 플러그인
+파일이 여러 번 로드될 수 있음에 주의하셔야 합니다.
 
-The following list of RubyGems plugins is probably not exhaustive. If you know of plugins that we missed, feel free to update this page.
+다음 RubyGems 플러그인의 목록은 완전하지 않습니다. 빠진 플러그인을 알고 있다면,
+편하게 이 페이지를 업데이트 해주세요.
 
 * [executable-hooks](#executablehooks)
 * [gem-browse](#gembrowse)
 * [gem-ctags](#gemctags)
 * [gem-empty](#gemempty)
-* [gem_info](#geminfo)
+* [gem\_info](#geminfo)
 * [gem-init](#geminit)
 * [gem-compare](#gemcompare)
 * [gem-man](#gemman)
@@ -33,7 +38,7 @@ The following list of RubyGems plugins is probably not exhaustive. If you know o
 * [rubygems-desc](#rubygemsdesc)
 * [rubygems-openpgp](#rubygemsopenpgp)
 * [rubygems-sandbox](#rubygemssandbox)
-* [rubygems_snapshot](#rubygemssnapshot)
+* [rubygems\_snapshot](#rubygemssnapshot)
 * [rubygems-tasks](#rubygemstasks)
 
 <a id="executablehooks"> </a>
@@ -42,9 +47,9 @@ The following list of RubyGems plugins is probably not exhaustive. If you know o
 
 [https://github.com/mpapis/executable-hooks](https://github.com/mpapis/executable-hooks)
 
-Extends rubygems to support executables plugins.
+executables 플러그인을 지원하도록 rubygems를 확장합니다.
 
-In gem lib dir create rubygems_executable_plugin.rb:
+gem의 lib 디렉터리 안에 rubygems\_executable\_plugin.rb를 만드세요.
 
     Gem.execute do |original_file|
       warn("Executing: #{original_file}")
@@ -57,12 +62,12 @@ In gem lib dir create rubygems_executable_plugin.rb:
 
 [https://github.com/tpope/gem-browse](https://github.com/tpope/gem-browse)
 
-Adds four commands:
+다음 명령을 추가합니다.
 
-- `gem edit` opens a gem in your editor
-- `gem open` opens a  gem  by name in your editor
-- `gem clone` clones a gem from GitHub
-- `gem browse` opens a gem's homepage in your browser
+- `gem edit` 편집기에서 gem을 열기
+- `gem open` 이름으로 편집기에서 gem을 열기
+- `gem clone` GitHub에서 gem을 클론하기
+- `gem browse` 브라우저에서 gem의 홈페이지를 열기
 
 <a id="gemempty"> </a>
 
@@ -70,7 +75,7 @@ Adds four commands:
 
 [https://github.com/rvm/gem-empty](https://github.com/rvm/gem-empty)
 
-Adds command `gem empty` to remove all gems from current `GEM_HOME`.
+현재 `GEM_HOME`에서 모든 gem을 제거하는 `gem empty` 명령을 추가합니다.
 
 <a id="gemctags"> </a>
 
@@ -78,15 +83,18 @@ Adds command `gem empty` to remove all gems from current `GEM_HOME`.
 
 [https://github.com/tpope/gem-ctags](https://github.com/tpope/gem-ctags)
 
-Adds a `gem ctags` command to invoke the Exuberant Ctags indexer on already-installed gems, and then automatically invokes it on gems as they are installed.
+
+이미 설치된 gem에 ctags를 추가하고, gem을 설치할 때 ctags를 호출하는 `gem ctags`
+명령을 추가합니다.
 
 <a id="geminfo"> </a>
 
-## gem_info
+## gem\_info
 
-[https://github.com/oggy/gem_info](https://github.com/oggy/gem_info)
+[https://github.com/oggy/gem\_info](https://github.com/oggy/gem_info)
 
-Adds a `gem info` command with fuzzy matching on name and version. Designed for scripting use.
+이름과 버전으로 퍼지 매칭(fuzzy matching)을 하는 `gem info` 명령을 추가합니다.
+스크립트에서 사용하도록 설계되었습니다.
 
 <a id="geminit"> </a>
 
@@ -94,7 +102,7 @@ Adds a `gem info` command with fuzzy matching on name and version. Designed for 
 
 [https://github.com/mwhuss/gem-init](https://github.com/mwhuss/gem-init)
 
-Adds `gem init` to create a barebones gem.
+뼈대 gem을 만드는 `gem init`를 추가합니다.
 
 <a id="gemcompare"> </a>
 
@@ -102,8 +110,8 @@ Adds `gem init` to create a barebones gem.
 
 [https://github.com/strzibny/gem-compare](https://github.com/strzibny/gem-compare)
 
-Adds `gem compare` command that can help you to track upstream changes in the released
-.gem files by comparing gemspec values, gemspec and Gemfile dependencies and files.
+gemspec 값, gemspec, Gemfile 의존성, 파일을 비교해 릴리스된 .gem 파일의 업스트림
+변경을 확인하는 `gem compare` 명령을 추가합니다.
 
 
 <a id="gemman"> </a>
@@ -112,7 +120,7 @@ Adds `gem compare` command that can help you to track upstream changes in the re
 
 [https://github.com/defunkt/gem-man](https://github.com/defunkt/gem-man)
 
-The `gem man` command lets you view a gem's man page.
+`gem man` 명령으로 gem의 man 페이지를 확인할 수 있습니다.
 
 <a id="gemniceinstall"> </a>
 
@@ -120,9 +128,8 @@ The `gem man` command lets you view a gem's man page.
 
 [https://github.com/voxik/gem-nice-install](https://github.com/voxik/gem-nice-install)
 
-Tries to install system dependencies needed to install your gems with binary extensions
-using standard `gem install` command. This currently works only for Fedora, but
-hopefully will be extended.
+표준 `gem install` 명령을 사용해 gem의 바이너리 확장에 필요한 시스템 의존성을
+설치하려 합니다. 현재 페도라에서만 동작하지만 지원하는 곳이 늘어나길 기대합니다.
 
 <a id="gemorphan"> </a>
 
@@ -130,7 +137,7 @@ hopefully will be extended.
 
 [https://github.com/sakuro/gem-orphan](https://github.com/sakuro/gem-orphan)
 
-Adds a `gem orphan` command that finds and lists  gems on which no other gems are depending.
+다른 gem과 의존성이 없는 gem을 찾아 나열하는 `gem orphan` 명령을 추가합니다.
 
 <a id="gempatch"> </a>
 
@@ -138,8 +145,8 @@ Adds a `gem orphan` command that finds and lists  gems on which no other gems ar
 
 [https://github.com/strzibny/gem-patch](https://github.com/strzibny/gem-patch)
 
-Adds `gem patch` command, which enables you to apply patches directly on `.gem` files.
-Supports both RubyGems 1.8 and RubyGems 2.0.
+`.gem` 파일에 직접 패치를 적용할 수 있는 `gem patch` 명령을 추가합니다.
+RubyGems 1.8과 2.0 양쪽 다 지원합니다.
 
 <a id="gemtoolbox"> </a>
 
@@ -147,14 +154,14 @@ Supports both RubyGems 1.8 and RubyGems 2.0.
 
 [https://github.com/gudleik/gem-toolbox](https://github.com/gudleik/gem-toolbox)
 
-Adds six commands:
+여섯 개의 명령을 추가합니다.
 
-- `gem open` - opens a gem in your default editor
-- `gem cd` - changes your working directory  to the gem's source root
-- `gem readme` - locates and displays a gem's readme file
-- `gem history` - locates and display's a gem's changelog
-- `gem doc` - Browse a gem's documentation in your default browser
-- `gem visit` - Open a gem's homepage in your default browser
+- `gem open` - 기본 편집기에서 gem을 열기
+- `gem cd` - 작업 디렉터리를 gem의 소스 루트로 변경
+- `gem readme` - gem의 readme 파일을 찾아서 표시하기
+- `gem history` - gem의 changelog를 찾아서 표시하기
+- `gem doc` - 기본 브라우저에서 gem의 문서를 열기
+- `gem visit` - 기본 브라우저에서 gem의 홈페이지를 열기
 
 <a id="gemwrappers"> </a>
 
@@ -162,13 +169,13 @@ Adds six commands:
 
 [https://github.com/rvm/gem-wrappers](https://github.com/rvm/gem-wrappers)
 
-Create gem wrappers for easy use of gems in cron and other system locations.
-By default wrappers are installed when a gem is installed.
+cron이나 다른 시스템에서 gem을 쉽게 사용하기 위해 gem 래퍼를 만듭니다.
+기본적으로 gem이 설치될 때 래퍼도 설치됩니다.
 
-Adds this commands:
+이 명령어들을 추가합니다.
 
-- `gem wrappers regenerate` - force rebuilding wrappers for all gem executables
-- `gem wrappers` - show current configuration
+- `gem wrappers regenerate` - 모든 gem 실행파일 래퍼를 강제로 재작성하기
+- `gem wrappers` - 현재 설정을 보여주기
 
 <a id="graph"> </a>
 
@@ -176,34 +183,36 @@ Adds this commands:
 
 [https://github.com/seattlerb/graph](https://github.com/seattlerb/graph)
 
-Adds a `gem graph` command to output a gem dependency graph in graphviz's dot format.
+gem 의존성 그래프를 graphviz의 dot 형식으로 출력하는 `gem graph` 명령을
+추가합니다.
 
 <a id="mavengem"> </a>
 
-## maven_gem
+## maven\_gem
 
-[https://github.com/jruby/maven_gem](https://github.com/jruby/maven_gem)
+[https://github.com/jruby/maven\_gem](https://github.com/jruby/maven_gem)
 
-Adds `gem maven` to install any Maven-published Java library as though it were a gem.
+Maven으로 배포되는 자바 라이브러리를 gem처럼 설치하는 `gem maven`을 추가합니다.
 
 <a id="opengem"> </a>
 
-## open_gem
+## open\_gem
 
-[https://github.com/adamsanderson/open_gem](https://github.com/adamsanderson/open_gem)
+[https://github.com/adamsanderson/open\_gem](https://github.com/adamsanderson/open_gem)
 
-Adds two commands:
+두 개의 명령을 추가합니다.
 
-- `gem open` opens a gem in your default editor
-- `gem read` opens a gem's rdoc in your default browser
+- `gem open` 기본 편집기에서 gem을 열기
+- `gem read` 기본 브라우저에서 gem의 rdoc 열기
 
 <a id="pushsafety"> </a>
 
 ## PushSafety
 
-[https://github.com/jdleesmiller/push_safety](https://github.com/jdleesmiller/push_safety)
+[https://github.com/jdleesmiller/push\_safety](https://github.com/jdleesmiller/push_safety)
 
-Applies a whitelist to `gem push` to prevent accidentally pushing private gems to the public RubyGems repository.
+실수로 비공개 gem을 공개 RubyGems 저장소에 `gem push` 하는 것을 방지하도록
+화이트리스트에 적용합니다.
 
 <a id="rbenvrehash"> </a>
 
@@ -211,7 +220,7 @@ Applies a whitelist to `gem push` to prevent accidentally pushing private gems t
 
 [https://github.com/scoz/rbenv-rehash](https://github.com/scoz/rbenv-rehash)
 
-Automatically runs `rbenv rehash` after installing or uninstalling gems.
+gem을 설치하고 제거할 때 자동으로 `rbenv rehash`를 실행해줍니다.
 
 <a id="rubygemsdesc"> </a>
 
@@ -219,7 +228,7 @@ Automatically runs `rbenv rehash` after installing or uninstalling gems.
 
 [https://github.com/chad/rubygems-desc](https://github.com/chad/rubygems-desc)
 
-Adds `gem desc` to describe a gem by name.
+gem을 이름으로 설명해주는 `gem desc`를 추가합니다.
 
 <a id="rubygemsopenpgp"> </a>
 
@@ -227,12 +236,12 @@ Adds `gem desc` to describe a gem by name.
 
 [https://github.com/grant-olson/rubygems-openpgp](https://github.com/grant-olson/rubygems-openpgp)
 
-Adds commands and flags to allow OpenPGP signing of gems.
+gem에 OpenPGP 서명을 하기 위한 명령어와 플래그를 추가합니다.
 
-- `gem sign foo.gem` to sign a gem.
-- `gem verify foo.gem --trust` to verify a gem.
-- `gem build foo.gemspec --sign` to sign at build time.
-- `gem install foo --verify --trust` to verify on install.
+- `gem sign foo.gem`으로 gem 서명
+- `gem verify foo.gem --trust`로 gem 인증
+- `gem build foo.gemspec --sign`으로 빌드할 때 서명
+- `gem install foo --verify --trust`로 설치할 때 인증
 
 <a id="rubygemssandbox"> </a>
 
@@ -240,15 +249,17 @@ Adds commands and flags to allow OpenPGP signing of gems.
 
 [https://github.com/seattlerb/rubygems-sandbox](https://github.com/seattlerb/rubygems-sandbox)
 
-Manages command-line gem tools and dependencies with a `gem  sandbox` command. This lets you install things like flay and rdoc outside of the global rubygems repository.
+커맨드 라인 gem 도구와 의존성을 `gem sandbox` 명령어로 관리합니다. 이것으로
+글로벌 rubygems 저장소 밖에 flay와 rdoc을 설치할 수 있습니다.
 
 <a id="rubygemssnapshot"> </a>
 
-## rubygems_snapshot
+## rubygems\_snapshot
 
-[https://github.com/rogerleite/rubygems_snapshot](https://github.com/rogerleite/rubygems_snapshot)
+[https://github.com/rogerleite/rubygems\_snapshot](https://github.com/rogerleite/rubygems_snapshot)
 
-Adds `gem snapshot` to create exports of all your current gems into a single file that you can import later.
+나중에 가져오기 편하게 현재 gem을 하나의 파일로 추출해주는 `gem snapshot`을
+추가합니다.
 
 <a id="rubygemstasks"> </a>
 
@@ -256,4 +267,5 @@ Adds `gem snapshot` to create exports of all your current gems into a single fil
 
 [https://github.com/postmodern/rubygems-tasks](https://github.com/postmodern/rubygems-tasks#readme)
 
-rubygems-tasks provides agnostic and unobtrusive Rake tasks for building, installing and releasing Ruby Gems.
+rubygems-tasks는 독립적이고 거슬리지 않게 루비 gem을 빌드, 설치, 릴리스하는 Rake
+작업를 제공합니다.
