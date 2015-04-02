@@ -121,7 +121,7 @@ gemspec을 만들었으면, 거기에서 gem을 빌드 할 수 있습니다. 그
 > 패스워드를 입력하면, api_key.yaml 파일을 다운로드하려 합니다. 이 파일을
 > 'credentials'이라 이름 지어 ~/.gem에 저장하시면 됩니다.
 
-이 설정이 끝나면, gem을 RubyGems에 올릴 수 있습니다.
+이 설정이 끝나면, gem을 RubyGems에 푸시할 수 있습니다.
 
     % gem push hola-0.0.0.gem
     Pushing gem to RubyGems.org...
@@ -301,7 +301,7 @@ Hola의 실행 파일은 이렇습니다.
     % ruby -Ilib ./bin/hola spanish
     hola mundo
 
-마지막으로 gem을 올릴 때 Hola의 실행 파일을 포함시키기 위해, gemspec에 이런
+마지막으로 gem을 푸시할 때 Hola의 실행 파일을 포함시키기 위해, gemspec에 이런
 내용을 추가해야 합니다.
 
     % head -4 hola.gemspec
@@ -314,7 +314,7 @@ Hola의 실행 파일은 이렇습니다.
 실행 파일을 좀 더 `bin` 디렉터리에 추가하고 gemspec의 `executables` 배열에도
 추가할 수 있습니다.
 
-> 새로 릴리스할 때 gem의 버전을 변경해야 하는 것에 주의하세요.
+> 새로운 릴리스를 푸시할 때 gem의 버전을 변경해야 하는 것에 주의하세요.
 > gem 버전에 관한 더 자세한 정보는 [패턴 가이드]({{ site.baseurl }}/patterns/#semantic-versioning)를
 > 보세요.
 
@@ -436,7 +436,7 @@ hola를 위한 기본 테스트 파일은 여기 있습니다.
       end
     end
 
-[YARD](http://yardoc.org/)도 gem을 올리면 [RubyDoc.info](http://rubydoc.info/)에서
+[YARD](http://yardoc.org/)도 gem을 푸시하면 [RubyDoc.info](http://rubydoc.info/)에서
 자동으로 gem을 위한 YARDocs을 만들어주기 때문에 문서화를 위한 좋은 선택이 될 수
 있습니다. YARD는 RDoc과의 하위호환성을 유지하고 무엇이 다르고 어떻게 시작하는지에
 관한 [좋은 소개 글](http://rubydoc.info/docs/yard/file/docs/GettingStarted.md)이

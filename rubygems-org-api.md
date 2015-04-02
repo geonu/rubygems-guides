@@ -19,7 +19,7 @@ next: /run-your-own-gem-server
   조회하기
 * [Gem 다운로드 메소드](#gem-download-methods): 다운로드 통계 조회하기
 * [소유자 메소드](#owner-methods): gem의 소유자를 관리하기
-* [웹훅 메소드](#webhook-methods): gem이 넣어졌을 때의 알림 관리하기
+* [웹훅 메소드](#webhook-methods): gem 푸시 알림 관리하기
 * [활동 메소드](#activity-methods): 사이트 전체의 활동에 대한 정보 조회하기
 * [기타 메소드](#misc-methods): 그 밖의 다양한 사이트와의 통신
 
@@ -227,7 +227,7 @@ RubyGems의 총 다운로드 수가 담긴 객체를 반환합니다.
 
 ### GET - `/api/v1/owners/[USER HANDLE]/gems.(json|yaml)`
 
-사용자의 모든 gem을 봅니다. 이것은 사용자가 넣을 수 있는 모든 gem입니다.
+사용자의 모든 gem을 봅니다. 이것은 사용자가 푸시할 수 있는 모든 gem입니다.
 
     $ curl https://rubygems.org/api/v1/owners/qrush/gems.json
 
@@ -242,7 +242,7 @@ RubyGems의 총 다운로드 수가 담긴 객체를 반환합니다.
 
 ### GET - `/api/v1/gems/[GEM NAME]/owners.(json|yaml)`
 
-gem의 모든 소유자를 봅니다. 이 사용자들은 이 gem을 넣을 수 있습니다.
+gem의 모든 소유자를 봅니다. 이 사용자들은 이 gem을 푸시할 수 있습니다.
 
     $ curl https://rubygems.org/api/v1/gems/gemcutter/owners.json
 
