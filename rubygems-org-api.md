@@ -6,53 +6,54 @@ previous: /command-reference
 next: /run-your-own-gem-server
 ---
 
-<em class="t-gray">Details on interacting with RubyGems.org over HTTP.</em>
+<em class="t-gray">HTTP를 통한 RubyGems.org와의 통신 자세히 보기</em>
 
-> NOTE: The API is a work in progress, and [can use your help!](https://github.com/rubygems/gemcutter)
-> RubyGems itself and the
-> [gemcutter gem](https://rubygems.org/gems/gemcutter) use the API to push gems,
-> add owners, and more.
+> 주의: API는 작업 중이고, [도움이 필요합니다!](https://github.com/rubygems/gemcutter)
+> RubyGems 자체와
+> [gemcutter gem](https://rubygems.org/gems/gemcutter)은 gem을 넣고 소유자를
+> 추가하고 그 밖의 다른 일을 하기 위해 API를 사용합니다.
 
-* [API Authorization](#api-authorization): How to authenticate with RubyGems.org
-* [Gem Methods](#gem-methods): Query or create gems to be hosted
-* [Gem Version Methods](#gem-version-methods): Query for information about
-  versions of a particular gem
-* [Gem Download Methods](#gem-download-methods): Query for download statistics
-* [Owner Methods](#owner-methods): Manage owners for gems
-* [Webhook Methods](#webhook-methods): Manage notifications for when gems are
-  pushed
-* [Activity Methods](#activity-methods): Query for information about site-wide
-  activity
-* [Misc Methods](#misc-methods): Various other interactions with the site
+* [API 인증](#api-authorization): RubyGems.org에 인증하는 방법
+* [Gem 메소드](#gem-methods): 호스트할 gem을 만들거나 조회하기
+* [Gem 버전 메소드](#gem-version-methods): 특정 gem의 버전에 관한 정보를
+  조회하기
+* [Gem 다운로드 메소드](#gem-download-methods): 다운로드 통계 조회하기
+* [소유자 메소드](#owner-methods): gem의 소유자를 관리하기
+* [웹훅 메소드](#webhook-methods): gem 푸시 알림 관리하기
+* [활동 메소드](#activity-methods): 사이트 전체의 활동에 대한 정보 조회하기
+* [기타 메소드](#misc-methods): 그 밖의 다양한 사이트와의 통신
 
-API Authorization
------------------
+API 인증
+---------------------
+{:#api-authorization}
 
-Some API calls require an Authorization header. To find your API key, click on
-your username when logged in to [RubyGems.org](http://rubygems.org) and then click on 'Edit Profile'. Here's an example of
-using an API key:
+어떤 API 통신은 인증 헤더가 필요합니다. API 키를 찾으려면,
+[RubyGems.org](http://rubygems.org)에 로그인한 이후 당신의 유저 이름을 클릭해서
+'Edit Profile'을 클릭합니다. 여기에 API 키를 사용하는 예가 있습니다.
 
     $ curl -H 'Authorization:YOUR_API_KEY' \
       https://rubygems.org/api/v1/some_api_call.json
 
-Ruby Library
-------------
+루비 라이브러리
+--------------
 
-You can also interact with RubyGems.org using Ruby.
+RubyGems.org와 루비로 통신 할 수도 있습니다.
 
-The [gems](https://rubygems.org/gems/gems) client provides a Ruby interface to
-all the resources listed below. This library has
-[full documentation](http://rdoc.info/gems/gems) that includes some basic usage
-examples in the README. You can install the library with the command:
+[gems](https://rubygems.org/gems/gems) 클라이언트는 밑에 나열된 모든 방법의 루비
+인터페이스를 제공합니다. 이 라이브러리는 README에 있는 기본 사용 예를 포함한
+[전체 문서](http://rdoc.info/gems/gems)를 가지고 있습니다. 이 라이브러리는 다음
+명령으로 설치할 수 있습니다.
 
     gem install gems
 
-Gem Methods
------------
+Gem 메소드
+---------
+{:#gem-methods}
 
 ### GET - `/api/v1/gems/[GEM NAME].(json|yaml)`
 
-Returns some basic information about the given gem. See below an example response for the gem "rails" in JSON format:
+주어진 gem의 기본 정보를 반환합니다. 밑은 "rails" gem의 정보를 JSON 형식으로
+응답한 예제입니다.
 
     $ curl https://rubygems.org/api/v1/gems/rails.json
 
@@ -111,23 +112,23 @@ Returns some basic information about the given gem. See below an example respons
 
 ### GET - `/api/v1/search.(json|yaml)?query=[YOUR QUERY]`
 
-Submit a search to Gemcutter for active gems, just like a search query on the
-site. Returns an array of the JSON or YAML representation of gems that match.
+사이트에서 검색을 하는 것처럼 Gemcutter에 검색을 합니다. 일치한 gem의 정보를
+JSON이나 YAML의 배열로 반환합니다.
 
     $ curl 'https://rubygems.org/api/v1/search.json?query=cucumber'
 
     $ curl 'https://rubygems.org/api/v1/search.yaml?query=cucumber'
 
-The results are paginated so the API call will return only the first 30 matched
-gems. To get subsequent results, use the page query parameter until an empty
-response is received.
+결과는 페이지로 구분되며 API 호출은 처음 30개의 일치된 값만 반환합니다. 다음
+결과를 얻으려면, 빈 결과가 나오기 전까지 페이지 쿼리 매개변수를 사용하시면
+됩니다.
 
     $ curl 'https://rubygems.org/api/v1/search.json?query=cucumber&page=2'
 
 ### GET - `/api/v1/gems.(json|yaml)`
 
-List all gems that you own. Returns an array of the JSON or YAML representation
-of gems you own.
+소유한 모든 gem을 나열합니다. 소유한 gem의 정보를 JSON이나 YAML의 배열로
+반환합니다.
 
     $ curl -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
               https://rubygems.org/api/v1/gems.json
@@ -135,7 +136,8 @@ of gems you own.
 
 ### POST - `/api/v1/gems`
 
-Submit a gem to RubyGems.org. Must post a built RubyGem in the request body.
+RubyGems.org에 gem을 보냅니다. 빌드한 루비 gem을 리퀘스트 보디에 넣어서
+전송(post)해야 합니다.
 
     $ curl --data-binary @gemcutter-0.2.1.gem \
            -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
@@ -145,7 +147,7 @@ Submit a gem to RubyGems.org. Must post a built RubyGem in the request body.
 
 ### DELETE - `/api/v1/gems/yank`
 
-Remove a gem from RubyGems.org's index. Platform is optional.
+RubyGems.org의 목록에서 gem을 제거합니다. 플랫폼은 선택적입니다.
 
     $ curl -X DELETE -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            -d 'gem_name=bills' -d 'version=0.0.1' \
@@ -157,7 +159,8 @@ Remove a gem from RubyGems.org's index. Platform is optional.
 
 ### PUT - `/api/v1/gems/unyank`
 
-Update a previously yanked gem back into RubyGems.org's index. Platform is optional.
+제거된 gem을 다시 RubyGems.org의 목록으로 업데이트 합니다. 플랫폼은
+선택적입니다.
 
     $ curl -X PUT -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            -d 'gem_name=bills' -d 'version=0.0.1' \
@@ -166,12 +169,13 @@ Update a previously yanked gem back into RubyGems.org's index. Platform is optio
 
     Successfully unyanked gem: bills (0.0.1)
 
-Gem Version Methods
--------------------
+Gem 버전 메소드
+-----------------------
+{:#gem-version-methods}
 
 ### GET - `/api/v1/versions/[GEM NAME].(json|yaml)`
 
-Returns an array of gem version details like the below:
+밑에 나온 것처럼 gem 버전의 상세정보를 반환합니다.
 
     $ curl https://rubygems.org/api/v1/versions/coulda.json
 
@@ -192,12 +196,13 @@ Returns an array of gem version details like the below:
       }
     ]
 
-Gem Download Methods
---------------------
+Gem 다운로드 메소드
+------------------------
+{:#gem-download-methods}
 
 ### GET - `/api/v1/downloads.(json|yaml)`
 
-Returns an object containing the total number of downloads on RubyGems.
+RubyGems의 총 다운로드 수가 담긴 객체를 반환합니다.
 
     $ curl https://rubygems.org/api/v1/downloads.json
 
@@ -207,8 +212,7 @@ Returns an object containing the total number of downloads on RubyGems.
 
 ### GET - `/api/v1/downloads/[GEM NAME]-[GEM VERSION].(json|yaml)`
 
-Returns an object containing the total number of downloads for a particular gem
-as well as the total number of downloads for the specified version.
+특정 gem의 총 다운로드 수와 특정 버전의 총 다운로드 수가 담긴 객체를 반환합니다.
 
     $ curl https://rubygems.org/api/v1/downloads/rails_admin-0.0.0.json
 
@@ -217,12 +221,13 @@ as well as the total number of downloads for the specified version.
       "total_downloads": 3142
     }
 
-Owner Methods
--------------
+소유자 메소드
+-----------------
+{:#owner-methods}
 
 ### GET - `/api/v1/owners/[USER HANDLE]/gems.(json|yaml)`
 
-View all gems for a user. This is all the gems a user can push to.
+사용자의 모든 gem을 봅니다. 이것은 사용자가 푸시할 수 있는 모든 gem입니다.
 
     $ curl https://rubygems.org/api/v1/owners/qrush/gems.json
 
@@ -237,7 +242,7 @@ View all gems for a user. This is all the gems a user can push to.
 
 ### GET - `/api/v1/gems/[GEM NAME]/owners.(json|yaml)`
 
-View all owners of a gem. These users can all push to this gem.
+gem의 모든 소유자를 봅니다. 이 사용자들은 이 gem을 푸시할 수 있습니다.
 
     $ curl https://rubygems.org/api/v1/gems/gemcutter/owners.json
 
@@ -252,7 +257,8 @@ View all owners of a gem. These users can all push to this gem.
 
 ### POST - `/api/v1/gems/[GEM NAME]/owners`
 
-Add an owner to a RubyGem you own, giving that user permission to manage it.
+소유하고 있는 루비 gem에 소유자를 추가합니다. 그 사용자에게 gem을 관리할 수 있는
+권한을 줍니다.
 
     $ curl -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            -F 'email=josh@technicalpickles.com' \
@@ -262,7 +268,7 @@ Add an owner to a RubyGem you own, giving that user permission to manage it.
 
 ### DELETE - `/api/v1/gems/[GEM NAME]/owners`
 
-Remove a user's permission to manage a RubyGem you own.
+소유하고 있는 루비 gem의 사용자 관리 권한을 제거합니다.
 
     $ curl -X DELETE -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
             -d "email=josh@technicalpickles.com" \
@@ -270,12 +276,13 @@ Remove a user's permission to manage a RubyGem you own.
 
     Owner removed successfully.
 
-WebHook Methods
----------------
+웹훅 메소드
+-------------------
+{:#webhook-methods}
 
 ### GET - `/api/v1/web_hooks.(json|yaml)`
 
-List the webhooks registered under your account.
+당신의 계정에 등록된 웹훅을 나열합니다.
 
     $ curl -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            https://rubygems.org/api/v1/web_hooks.json
@@ -297,8 +304,8 @@ List the webhooks registered under your account.
 
 ### POST - `/api/v1/web_hooks`
 
-Create a webhook. Requires two parameters: `gem_name` and `url`. Specify `*`
-for the `gem_name` parameter to apply the hook globally to all gems.
+웹훅을 만듭니다. `gem_name`과 `url` 두 매개변수가 필요합니다. `gem_name`
+매개변수에 `*`를 넣으면, 전체 gem의 훅에 적용할 수 있습니다.
 
     $ curl -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            -F 'gem_name=rails' -F 'url=http://example.com' \
@@ -314,8 +321,8 @@ for the `gem_name` parameter to apply the hook globally to all gems.
 
 ### DELETE - `/api/v1/web_hooks/remove`
 
-Remove a webhook. Requires two parameters: `gem_name` and `url`. Specify `*`
-for the `gem_name` parameter to apply the hook globally to all gems.
+웹훅을 제거합니다. `gem_name`과 `url` 두 매개변수가 필요합니다. `gem_name`
+매개변수에 `*`를 넣으면, 전체 gem의 훅에 적용할 수 있습니다.
 
     $ curl -X DELETE -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            -d 'gem_name=rails' -d 'url=http://example.com' \
@@ -331,14 +338,14 @@ for the `gem_name` parameter to apply the hook globally to all gems.
 
 ### POST - `/api/v1/web_hooks/fire`
 
-Test fire a webhook. This can be used to test out an endpoint at any time, for
-example when you're developing your application. Requires two parameters:
-`gem_name` and `url`. Specify `*` for the gem_name parameter to apply the hook
-globally to all gems.
+웹훅을 시험삼아 실행해 봅니다. 애플리케이션을 개발 중일 때와 같은 경우, 이를
+사용해 언제나 엔드포인트를 테스트할 수 있습니다. `gem_name`과 `url` 두
+매개변수가 필요합니다.`gem_name` 매개변수에 `*`를 넣으면, 전체 gem의 훅에
+적용할 수 있습니다.
 
-An `Authorization` header is included with every fired webhook so you can be
-sure the request came from RubyGems.org. The value of the header is the
-SHA2-hashed concatenation of the gem name, the gem version and your API key.
+`Authorization` 헤더는 실행된 모든 웹훅에 포함되어 요청이 RubyGems.org로부터 온
+것인지 확신할 수 있습니다. 이 헤더에는 gem 이름, gem 버전, API 키를 이어 붙여
+SHA2로 해시된 값이 들어갑니다.
 
     $ curl -H 'Authorization:701243f217cdf23b1370c7b66b65ca97' \
            -F 'gem_name=rails' -F 'url=http://example.com' \
@@ -352,27 +359,31 @@ SHA2-hashed concatenation of the gem name, the gem version and your API key.
 
     Successfully deployed webhook for all gems to http://example.com
 
-Activity Methods
-------------
+활동 메소드
+--------------------
+{:#activity-methods}
 
 ### GET - `/api/v1/activity/latest`
 
-Pulls the 50 gems most recently added to RubyGems.org (for the first time). Returns an array of the JSON or YAML representation of the gems.
+RubyGems.org에 (처음) 추가된 최신 gem을 50 개 가져옵니다. gem의 정보는 JSON이나
+YAML의 배열로 반환합니다.
 
     $ curl 'https://rubygems.org/api/v1/activity/latest.json'
 
 ### GET - `/api/v1/activity/just_updated`
 
-Pulls the 50 most recently updated gems. Returns an array of the JSON or YAML representation of the gem versions.
+최근에 업데이트된 gem을 50 개 가져옵니다. gem 버전 정보를 JSON이나 YAML의
+배열로 반환합니다.
 
     $ curl 'https://rubygems.org/api/v1/activity/just_updated.json'
 
-Misc Methods
-------------
+기타 메소드
+----------------
+{:#misc-methods}
 
 ### GET - `/api/v1/api_key.(json|yaml)`
 
-Retrieve your API key using HTTP basic auth.
+HTTP 기본 인증으로 API 키를 가져옵니다.
 
     $ curl -u "nick@gemcutter.org:schwwwwing" \
            https://rubygems.org/api/v1/api_key.json
@@ -383,8 +394,8 @@ Retrieve your API key using HTTP basic auth.
 
 ### GET - `/api/v1/dependencies?gems=[COMMA DELIMITED GEM NAMES]`
 
-Returns a marshalled array of hashes for all versions of given gems. Each hash
-contains a gem version with its dependencies making this useful for resolving dependencies.
+주어진 gem의 모든 버전의 정보를 정렬된 해시 배열로 반환합니다. 각 해시는 gem
+버전과 그 의존성을 포함합니다. 이 정보는 의존성을 해결할 때 유용합니다.
 
     $ ruby -ropen-uri -rpp -e \
       'pp Marshal.load(open("https://rubygems.org/api/v1/dependencies?gems=rails,thor"))'
